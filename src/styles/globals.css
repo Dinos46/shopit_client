@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    @apply bg-bgc;
+}
+
+.header {
+    @apply flex justify-between items-center bg-bl p-6 font-pop text-wh;
+}
+
+.btn {
+    @apply font-pop rounded-lg border-4 p-2 text-bl font-medium hover:bg-bl hover:text-blue-300 transition ease-linear duration-300;
+}

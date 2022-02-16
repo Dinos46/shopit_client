@@ -1,14 +1,17 @@
 {
-  "private": true,
+  "name": "shopit-frontend",
+  "description": " online fake store",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
+  "author": "Din Ben Elisha",
   "dependencies": {
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-query": "^3.34.15"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
