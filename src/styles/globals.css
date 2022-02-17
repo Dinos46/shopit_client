@@ -20,3 +20,7 @@ body {
 .btn {
     @apply font-pop rounded-lg border-4 p-2 text-bl font-medium hover:bg-bl hover:text-blue-300 transition ease-linear duration-300;
 }
+
+.ctg-card {
+    @apply absolute z-10 w-full rounded-t-md bg-gradient-to-r from-bl to-transparent p-3;
+}

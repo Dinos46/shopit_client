@@ -1,13 +1,13 @@
 module.exports = {
-  purge: [
+  content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     extend: {
       colors: {
-        bl: '#2a2626',
-        bgc: '#1f1d1d',
+        bl: '#1d1a1a',
+        bgc: '#272626',
         wh: '#f5f5f5'
       },
       fontFamily: {

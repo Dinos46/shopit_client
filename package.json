@@ -2,16 +2,20 @@
   "name": "shopit-frontend",
   "description": " online fake store",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev ",
     "build": "next build",
     "start": "next start"
   },
   "author": "Din Ben Elisha",
   "dependencies": {
+    "axios": "^0.26.0",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.0.0",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-query": "^3.34.15"
+    "react-query": "^3.34.15",
+    "swiper": "^8.0.6"
   },
   "devDependencies": {
     "@types/node": "17.0.4",

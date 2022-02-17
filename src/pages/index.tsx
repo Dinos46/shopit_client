@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import ItemCategory from '../components/ItemCategory'
 import ItemPreview from '../components/ItemPreview'
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Hero />
       <ItemPreview />
+      <ItemCategory />
     </div>
   )
 }
