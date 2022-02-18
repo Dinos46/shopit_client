@@ -24,3 +24,7 @@ body {
 .ctg-card {
     @apply absolute z-10 w-full rounded-t-md bg-gradient-to-r from-bl to-transparent p-3;
 }
+
+.activ {
+    @apply text-blue-300 border-b-2 border-blue-300;
+}
