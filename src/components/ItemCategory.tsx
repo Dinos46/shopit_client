@@ -25,6 +25,7 @@ const ItemCategory = () => {
     <section className=" mt-5 grid h-1/6 grid-cols-2 grid-rows-2 gap-7">
       {categories.map((ctg, idx) => (
         <article
+          key={ctg}
           className="relative cursor-pointer"
           onClick={() => handleClick(ctg)}
         >
