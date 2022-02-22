@@ -3,23 +3,9 @@ import { useRouter } from 'next/router'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { useEffect } from 'react'
 
 const Header = () => {
   const router = useRouter()
-
-  useEffect(() => {
-    document.body.classList.add('header-initial')
-    window.onscroll = () => {
-      if (window.pageYOffset >= 85) {
-        document.body.classList.add('header-bg')
-        document.body.classList.remove('header-initial')
-      } else {
-        document.body.classList.add('header-initial')
-        document.body.classList.remove('header-bg')
-      }
-    }
-  }, [])
 
   const onToggleMenu = () => {
     console.log('open')

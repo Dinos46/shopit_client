@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import { onHeaderStyleChange } from '../util/stylesChange'
 
 type Props = {
   state: string
@@ -13,6 +14,8 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
     password: '',
   })
   const { email, username, password } = creds
+
+  onHeaderStyleChange('log')
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const { name } = e.currentTarget
