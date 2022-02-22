@@ -4,17 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
 body {
     height: 100%;
-}
-
-body {
     @apply bg-bgc;
 }
 
-.header {
-    @apply flex justify-between items-center bg-bl p-6 font-pop text-wh;
+.nav {
+    @apply flex justify-between items-center  p-5 font-pop  mx-auto max-w-6xl w-full;
+}
+
+.footer {
+    @apply mt-5 flex flex-col items-center justify-center bg-bl p-1 font-pop;
 }
 
 .btn {
@@ -27,4 +27,12 @@ body {
 
 .activ {
     @apply text-blue-300 border-b-2 border-blue-300;
+}
+
+body.header-initial header {
+    @apply bg-transparent transition ease-linear duration-300 text-bl;
+}
+
+body.header-bg header {
+    @apply bg-bl transition ease-linear duration-300 text-wh;
 }

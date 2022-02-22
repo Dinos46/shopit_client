@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Hero = () => {
   return (
     <section className="relative">
-      <div className="absolute top-10 z-10 p-5 md:left-10 ">
+      <div className="absolute top-24 z-10 p-5 md:left-10 ">
         <h2 className=" font-pop text-3xl text-bl md:text-5xl">
           Welcom to ShopIt
         </h2>
@@ -16,7 +16,7 @@ const Hero = () => {
         </button>
       </div>
       <Image
-        src={'/pic55.jpg'}
+        src={'/hero.jpg'}
         priority
         layout="responsive"
         objectFit="cover"

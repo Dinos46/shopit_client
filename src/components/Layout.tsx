@@ -5,10 +5,10 @@ import ScrollTop from './ScrollTop'
 
 const Layout: React.FC<ReactNode> = ({ children }) => {
   return (
-    <div className="relative mx-auto max-w-5xl">
+    <div className=" ">
       <Header />
       <ScrollTop />
-      <main className="">{children}</main>
+      <main className="m-auto h-full max-w-6xl">{children}</main>
       <Footer />
     </div>
   )
