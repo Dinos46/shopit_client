@@ -20,5 +20,5 @@ export const useGqlQuery = (
   // const fetchData = async () => await request(endpoin, query, variables)
   const fetchData = async () => await gqlClient.request(query, variables)
 
-  return useQuery(key, fetchData)
+  return useQuery(key, fetchData, config)
 }

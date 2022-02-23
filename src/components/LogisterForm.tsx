@@ -32,10 +32,10 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   }
 
   return (
-    <section className="mt-3 flex py-2 text-wh">
-      <section className="w-2/5 p-5">
-        <AccountCircleIcon className="text-8xl" />
-        <h1 className="text-4xl">{state}</h1>
+    <section className=" flex py-2 text-wh">
+      <section className="mt-20 flex w-1/3 flex-col p-5">
+        <AccountCircleIcon className="mb-1 self-center text-7xl" />
+        <h1 className="mb-3 self-center font-pop text-4xl">{state}</h1>
         <form onSubmit={handleSubmit} className="flex flex-col">
           {state === 'register' && (
             <input
@@ -44,6 +44,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
               placeholder="username..."
               value={username}
               onChange={handleChange}
+              className="form-input"
             />
           )}
           <input
@@ -52,6 +53,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
             placeholder="email..."
             value={email}
             onChange={handleChange}
+            className="form-input"
           />
           <input
             type="text"
@@ -59,7 +61,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
             placeholder="password..."
             value={password}
             onChange={handleChange}
-            className=""
+            className="form-input"
           />
           <button>submit</button>
         </form>

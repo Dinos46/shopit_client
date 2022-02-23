@@ -7,9 +7,14 @@ const shop = () => {
   const router = useRouter()
   onHeaderStyleChange('')
 
-  const { data, error, isLoading } = useGqlQuery('items', GET_ALL_ITEMS, {
-    ctg: router.query.ctg || '',
-  })
+  const { data, error, isLoading } = useGqlQuery(
+    'items',
+    GET_ALL_ITEMS,
+    {
+      ctg: router.query.ctg || '',
+    },
+    { staleTime: 50000 }
+  )
   return <div>{JSON.stringify(data)}</div>
 }
 
