@@ -7,11 +7,12 @@ const ItemCategory = () => {
   const [categories] = useState([
     `men's clothing`,
     `women's clothing`,
-    'accessories',
+    'jewelery',
     'electronics',
   ])
 
   const handleClick = (ctg: string) => {
+    console.log(`query param passed : ${ctg}`)
     const params = {
       pathname: '/shop',
       query: {

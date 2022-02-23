@@ -7,10 +7,10 @@ const shop = () => {
   const router = useRouter()
   onHeaderStyleChange('')
 
-  // const { data, error, isLoading } = useGqlQuery('items', GET_ALL_ITEMS, {
-  //   ctg: router?.query?.ctg || '',
-  // })
-  return <div>shop</div>
+  const { data, error, isLoading } = useGqlQuery('items', GET_ALL_ITEMS, {
+    ctg: router.query.ctg || '',
+  })
+  return <div>{JSON.stringify(data)}</div>
 }
 
 export default shop

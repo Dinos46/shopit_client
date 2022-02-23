@@ -1,6 +1,6 @@
 import { GraphQLClient } from 'graphql-request'
 import { useQuery } from 'react-query'
-import { IItem } from '../model/item.model'
+import { devConfig } from '../../config/dev.config'
 
 export const useGqlQuery = (
   key: string,
@@ -8,8 +8,8 @@ export const useGqlQuery = (
   variables = {},
   config = {}
 ) => {
-  const endpoin = 'http://localhost:5000/graphql'
-
+  // const endpoin = process.env.BASE_URL as string
+  const endpoin = devConfig.baseUrl
   const headers = {
     headers: {
       authorization: `Bearer token goes here`,
