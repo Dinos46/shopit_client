@@ -21,5 +21,9 @@ export const onHeaderStyleChange = (state: string) => {
         document.body.classList.add('header-bg')
         break
     }
-  }, [])
+    return () => {
+      document.body.classList.add('header-initial')
+      document.body.classList.remove('header-bg')
+    }
+  }, [state])
 }

@@ -15,7 +15,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   })
   const { email, username, password } = creds
 
-  onHeaderStyleChange('log')
+  onHeaderStyleChange('')
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const { name } = e.currentTarget
