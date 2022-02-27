@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { GET_ALL_ITEMS } from '../graphql/itemQueries'
-import { useGqlQuery } from '../hooks/useGqlQuery'
 import { IItem } from '../model/item.model'
 import ItemCard from './ItemCard'
 

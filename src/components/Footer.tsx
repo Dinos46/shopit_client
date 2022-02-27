@@ -5,7 +5,6 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 const Footer = () => {
   return (
     <footer className="footer">
-      <h2 className="text-2xl capitalize text-wh">shopIt fake store</h2>
       <section className="p-1 ">
         <h3 className="mb-1 text-xl font-extralight text-wh">follow us </h3>
         <FacebookIcon className=" font-extralight text-wh" />

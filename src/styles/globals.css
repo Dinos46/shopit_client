@@ -26,7 +26,7 @@ body {
 }
 
 .activ {
-    @apply text-blue-300 border-b-2 border-blue-300;
+    @apply border-b-2 border-blue-400 text-blue-400;
 }
 
 body.header-initial header {
@@ -38,5 +38,5 @@ body.header-bg header {
 }
 
 .form-input {
-    @apply mb-2 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
+    @apply mb-3 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
 }

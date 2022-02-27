@@ -1,13 +1,14 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
+import { appConfig } from '../../constants/app.config'
 
 const firebaseConfig = {
-  apiKey: process.env.FB_API_KEY,
-  authDomain: process.env.FB_AUTH_DOMAIN,
-  projectId: process.env.FB_PROJECT_ID,
-  storageBucket: process.env.FB_STORAGE_BUCKET,
-  messagingSenderId: process.env.FB_MSG_SENDER_ID,
-  appId: process.env.FB_APP_ID,
+  apiKey: appConfig.dev.firebase.apiKey,
+  authDomain: appConfig.dev.firebase.authDomain,
+  projectId: appConfig.dev.firebase.projectId,
+  storageBucket: appConfig.dev.firebase.storageBucket,
+  messagingSenderId: appConfig.dev.firebase.messagingSenderId,
+  appId: appConfig.dev.firebase.appId,
 }
 
 const app = initializeApp(firebaseConfig)
