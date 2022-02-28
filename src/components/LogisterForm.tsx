@@ -66,14 +66,14 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
           <button>submit</button>
         </form>
       </section>
-      <section className="mt-20 w-3/5">
+      <section className="mt-20 hidden w-3/5 md:block">
         <Image
           src="/pic8.jpg"
           alt="login screen image"
           className="h-full w-full object-cover"
           height={500}
           width={600}
-          // layout="responsive"
+          layout="responsive"
         />
       </section>
     </section>

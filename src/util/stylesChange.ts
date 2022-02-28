@@ -24,6 +24,7 @@ export const onHeaderStyleChange = (state: string) => {
     return () => {
       document.body.classList.add('header-initial')
       document.body.classList.remove('header-bg')
+      window.onscroll = null
     }
   }, [state])
 }
