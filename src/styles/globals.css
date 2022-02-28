@@ -40,3 +40,7 @@ body.header-bg header {
 .form-input {
     @apply mb-3 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
 }
+
+.user-links {
+    @apply absolute capitalize left-0 top-16 z-50 flex flex-col rounded-md bg-bl p-3 font-pop;
+}

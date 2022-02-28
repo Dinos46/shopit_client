@@ -4,6 +4,7 @@ import { onHeaderStyleChange } from '../util/stylesChange'
 
 const Home = () => {
   onHeaderStyleChange('header')
+
   return (
     <div>
       <Hero />

@@ -28,7 +28,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const res = await register(email, password)
+    const res = await register(email, password, username)
   }
 
   return (

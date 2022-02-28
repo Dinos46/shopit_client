@@ -60,7 +60,7 @@ const Header = () => {
 
               <div>
                 {open && (
-                  <ul className="absolute left-0 top-16 z-50 flex flex-col rounded-md bg-bl p-3">
+                  <ul className="user-links">
                     <li>
                       <Link href="/register">register</Link>
                     </li>
