@@ -6,7 +6,7 @@ const Home = () => {
   onHeaderStyleChange('header')
 
   return (
-    <div>
+    <div className="h-full">
       <Hero />
       <ItemCategory />
       {/* TODO sales component with deals */}

@@ -1,24 +1,24 @@
 export const appConfig = {
   dev: {
     firebase: {
-      apiKey: 'AIzaSyDTWVX8k1YbPyrqH_7cBqhT5W-0q8vC5xA',
-      authDomain: 'shopit-7bb54.firebaseapp.com',
-      projectId: 'shopit-7bb54',
-      storageBucket: 'shopit-7bb54.appspot.com',
-      messagingSenderId: '668848283323',
-      appId: '1:668848283323:web:307dbed675a73bddacd39e',
+      apiKey: process.env.NEXT_PUBLIC_APP_KEY,
+      authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+      projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+      storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+      messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_ID,
+      appId: process.env.NEXT_PUBLIC_APP_ID,
     },
-    baseUrl: 'http://localhost:5000/graphql',
+    baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL,
   },
   prod: {
     firebase: {
-      apiKey: 'AIzaSyDTWVX8k1YbPyrqH_7cBqhT5W-0q8vC5xA',
-      authDomain: 'shopit-7bb54.firebaseapp.com',
-      projectId: 'shopit-7bb54',
-      storageBucket: 'shopit-7bb54.appspot.com',
-      messagingSenderId: '668848283323',
-      appId: '1:668848283323:web:307dbed675a73bddacd39e',
+      apiKey: process.env.NEXT_PUBLIC_PROD_APP_KEY,
+      authDomain: process.env.NEXT_PUBLIC_PROD_AUTH_DOMAIN,
+      projectId: process.env.NEXT_PUBLIC_PROD_PROJECT_ID,
+      storageBucket: process.env.NEXT_PUBLIC_PROD_STORAGE_BUCKET,
+      messagingSenderId: process.env.NEXT_PUBLIC_PROD_MESSAGING_ID,
+      appId: process.env.NEXT_PUBLIC_PROD_APP_ID,
     },
-    baseUrl: 'https://shopit-fake-store.herokuapp.com/graphql',
+    baseUrl: process.env.NEXT_PUBLIC_PROD_APP_BASE_URL,
   },
 }

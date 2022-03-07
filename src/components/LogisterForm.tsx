@@ -32,8 +32,8 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   }
 
   return (
-    <section className=" flex py-2 text-wh">
-      <section className="mt-20 flex w-2/5 flex-col items-center p-5">
+    <section className="flex h-screen py-2 pt-28 text-wh">
+      <section className=" flex w-1/3 flex-col items-center p-5">
         <AccountCircleIcon className="mb-2  text-7xl text-blue-300" />
         <h1 className="mb-4  font-pop text-2xl capitalize">{state}</h1>
         <form onSubmit={handleSubmit} className="flex w-full  flex-col">
@@ -66,14 +66,14 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
           <button>submit</button>
         </form>
       </section>
-      <section className="mt-20 hidden w-3/5 md:block">
+      <section className=" hidden w-2/3 md:block">
         <Image
-          src="/pic8.jpg"
+          src="/pic9.jpg"
           alt="login screen image"
-          className="h-full w-full object-cover"
           height={500}
-          width={600}
+          width={500}
           layout="responsive"
+          objectFit="cover"
         />
       </section>
     </section>

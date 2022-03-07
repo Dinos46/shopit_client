@@ -5,7 +5,7 @@ import ScrollTop from './ScrollTop'
 
 const Layout: React.FC<ReactNode> = ({ children }) => {
   return (
-    <div className=" ">
+    <div className=" h-full">
       <Header />
       <ScrollTop />
       <main className="m-auto h-full max-w-6xl">{children}</main>
