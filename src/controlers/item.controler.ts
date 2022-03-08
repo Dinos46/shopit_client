@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { appConfig } from '../../constants/app.config'
+import { appConfig } from '../../constants/appConfig'
 import { GET_ALL_ITEMS } from '../graphql/itemQueries'
 
 export const queryAllItems = async (ctg = '', name = '') => {
   try {
-    const { data } = await axios.post(appConfig.dev.baseUrl, {
+    const { data } = await axios.post(appConfig.baseUrl, {
       query: GET_ALL_ITEMS,
       variables: {
         ctg,
