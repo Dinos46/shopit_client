@@ -1,10 +1,10 @@
 import Hero from '../components/Hero'
 import ItemCategory from '../components/ItemCategory'
-import { onHeaderStyleChange } from '../util/stylesChange'
+import { useStylesChange } from '../hooks/useStylesChange'
 
 const Home = () => {
-  onHeaderStyleChange('header')
-
+  useStylesChange('header')
+  console.log('ENV', process.env.NODE_ENV)
   return (
     <div className="h-full">
       <Hero />

@@ -1,13 +1,18 @@
 import Image from 'next/image'
 import { FormEvent, useState } from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { onHeaderStyleChange } from '../util/stylesChange'
-import { register } from '../controlers/auth.controler'
+import { useAppContext } from '../store/context/UserContext'
+import { observer } from 'mobx-react'
+import { useRouter } from 'next/router'
+import { useStylesChange } from '../hooks/useStylesChange'
 type Props = {
   state: string
 }
 
 const LogisterForm: React.FC<Props> = ({ state }) => {
+  const { pathname } = useRouter()
+
+  const { authStore } = useAppContext()
   const [creds, setCreds] = useState({
     username: '',
     email: '',
@@ -15,7 +20,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   })
   const { email, username, password } = creds
 
-  onHeaderStyleChange('')
+  useStylesChange('')
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const { name } = e.currentTarget
@@ -28,14 +33,17 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const res = await register(email, password, username)
-    console.log('res', res)
+    pathname === '/register'
+      ? authStore.createUser(email, password, username)
+      : authStore.logInUser(email, password)
   }
 
   return (
     <section className="flex h-screen py-2 pt-28 text-wh">
       <section className=" flex w-1/3 flex-col items-center p-5">
         <AccountCircleIcon className="mb-2  text-7xl text-blue-300" />
+        {authStore.user && JSON.stringify(authStore.user, null, 2)}
+
         <h1 className="mb-4  font-pop text-2xl capitalize">{state}</h1>
         <form onSubmit={handleSubmit} className="flex w-full  flex-col">
           {state === 'register' && (
@@ -64,11 +72,12 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
             onChange={handleChange}
             className="form-input"
           />
-          <button>submit</button>
+          <button disabled={authStore.isLoading}>submit</button>
         </form>
       </section>
       <section className=" hidden w-2/3 md:block">
         <Image
+          priority
           src="/pic9.jpg"
           alt="login screen image"
           height={500}
@@ -81,4 +90,4 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   )
 }
 
-export default LogisterForm
+export default observer(LogisterForm)

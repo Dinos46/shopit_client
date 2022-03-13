@@ -9,9 +9,9 @@ export const ADD_User = `
   }
   `
 
-export const GET_CURRENT_USER = `
+export const GET_USER = `
   query($email:String!){
-    user(email:$email){
+    getUser(email:$email){
       id
       email
       username

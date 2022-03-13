@@ -5,8 +5,10 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import { useState } from 'react'
+import { useAppContext } from '../store/context/UserContext'
 
 const Header = () => {
+  const { authStore } = useAppContext()
   const router = useRouter()
   const [open, setOpen] = useState(true)
 
@@ -18,8 +20,9 @@ const Header = () => {
     setOpen((prev) => !prev)
   }
 
-  const onLogOut = () => {
-    console.log('loged out')
+  const onLogOut = async () => {
+    await authStore.logOutUser()
+    router.pathname !== '/' ? router.push('/') : null
   }
 
   return (

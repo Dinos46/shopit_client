@@ -1,8 +1,8 @@
 import React from 'react'
-import { onHeaderStyleChange } from '../../util/stylesChange'
+import { useStylesChange } from '../../hooks/useStylesChange'
 
 const index = () => {
-  onHeaderStyleChange('')
+  useStylesChange('')
 
   return <div>page not found</div>
 }

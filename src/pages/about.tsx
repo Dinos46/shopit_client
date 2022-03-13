@@ -1,7 +1,7 @@
-import { onHeaderStyleChange } from '../util/stylesChange'
+import { useStylesChange } from '../hooks/useStylesChange'
 
 const about = () => {
-  onHeaderStyleChange('')
+  useStylesChange('')
 
   return <div>about</div>
 }

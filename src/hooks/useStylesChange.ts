@@ -1,6 +1,6 @@
-import React, { FC, PropsWithChildren, useEffect } from 'react'
+import { useEffect } from 'react'
 
-export const onHeaderStyleChange = (state: string) => {
+export const useStylesChange = (state: string) => {
   useEffect(() => {
     switch (state) {
       case 'header':
