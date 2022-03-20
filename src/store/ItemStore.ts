@@ -5,18 +5,12 @@ import { observable, makeObservable, action, runInAction } from 'mobx'
 class ItemStore {
   rootStore: RootStore
   items: IItem[] = []
+  isLoading: boolean = false
 
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore
 
-    makeObservable(this, {
-      items: observable,
-      setItems: action,
-    })
-  }
-
-  setItems(items: IItem[]) {
-    this.items = items
+    makeObservable(this, {})
   }
 }
 

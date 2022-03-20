@@ -10,7 +10,7 @@ import { useAppContext } from '../store/context/UserContext'
 const Header = () => {
   const { authStore } = useAppContext()
   const router = useRouter()
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   const handleClickAway = () => {
     setOpen(false)
@@ -22,7 +22,7 @@ const Header = () => {
 
   const onLogOut = async () => {
     await authStore.logOutUser()
-    router.pathname !== '/' ? router.push('/') : null
+    router.pathname !== '/' ? router.push('/') : window.scrollTo(0, 0)
   }
 
   return (
@@ -31,7 +31,7 @@ const Header = () => {
         <h1 className="text-2xl">
           <Link href="/">ShopIt</Link>
         </h1>
-        <ul className="flex font-normal">
+        <ul className="flex font-normal ">
           <li
             className={`capitalize ${router.pathname === '/' ? 'activ' : ' '}`}
           >
@@ -63,7 +63,7 @@ const Header = () => {
 
               <div>
                 {open && (
-                  <ul className="user-links">
+                  <ul className="user-links ">
                     <li>
                       <Link href="/register">register</Link>
                     </li>

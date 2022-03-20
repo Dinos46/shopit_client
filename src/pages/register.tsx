@@ -1,4 +1,4 @@
-import LogisterForm from '../components/LogisterForm'
+import { LogisterForm } from '../components'
 
 const register = () => {
   return <LogisterForm state={'register'} />

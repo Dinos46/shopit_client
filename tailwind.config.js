@@ -1,22 +1,25 @@
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}'
+    './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
         bl: '#1d1a1a',
         bgc: '#2a2a2a',
-        wh: '#f5f5f5'
+        wh: '#f5f5f5',
       },
       fontFamily: {
-        pop: ['Poppins', 'sans-serif']
-      }
+        pop: ['Poppins', 'sans-serif'],
+      },
+      gridTemplateColumns: {
+        'auto-fit': 'repeat(auto-fit, minmax(270px, 1fr))',
+      },
     },
   },
   variants: {
-    extends: {}
+    extends: {},
   },
   plugins: [],
 }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { appConfig } from '../constants/appConfig'
+import { appConfig } from '../../constants/appConfig'
 import { GET_ALL_ITEMS } from '../graphql/itemQueries'
 
 export const queryAllItems = async (ctg = '', name = '') => {

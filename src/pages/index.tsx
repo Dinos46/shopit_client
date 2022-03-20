@@ -1,5 +1,4 @@
-import Hero from '../components/Hero'
-import ItemCategory from '../components/ItemCategory'
+import { Hero, ItemCategory } from '../components'
 import { useStylesChange } from '../hooks/useStylesChange'
 
 const Home = () => {

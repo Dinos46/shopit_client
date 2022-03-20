@@ -3,15 +3,14 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
-import { auth } from '../services/firebaseService'
 import axios from 'axios'
 import { ADD_User, GET_USER } from '../graphql/userQueries'
-import { appConfig } from '../constants/appConfig'
+import { appConfig } from '../../constants/appConfig'
+import { auth } from '../services/firebaseService'
 
 const _getFirebaseToken = async () => {
   axios.defaults.baseURL = appConfig().baseUrl
   const token = await auth.currentUser?.getIdToken()
-  // console.log('token', token)
   if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     return token
@@ -28,8 +27,6 @@ export const register = async (
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password)
     if (res) {
-      // console.log('AFTER FIREBASE RES')
-
       const queryData = {
         query: ADD_User,
         variables: {
@@ -40,7 +37,6 @@ export const register = async (
       }
       const dbRes = await axios.post('', queryData)
       if (dbRes?.data) {
-        // console.log('DB RES')
         return dbRes.data.data.addUser
       }
     }

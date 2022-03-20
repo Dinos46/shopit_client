@@ -1,46 +1,53 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply scroll-smooth;
+}
+
 body {
-    height: 100%;
-    @apply bg-bgc;
+  height: 100%;
+  @apply bg-bgc;
 }
 
 .nav {
-    @apply flex justify-between items-center  p-5 font-pop  mx-auto max-w-6xl w-full;
+  @apply mx-auto flex w-full  max-w-6xl items-center  justify-between p-5 font-pop;
 }
 
 .footer {
-    @apply mt-5 flex flex-col items-center justify-center bg-bl p-1 font-pop;
+  @apply mt-5 flex flex-col items-center justify-center bg-bl p-1 font-pop;
 }
 
 .btn {
-    @apply font-pop rounded-lg border-4 p-2 text-bl font-medium hover:bg-bl hover:text-blue-300 transition ease-linear duration-300;
+  @apply rounded-lg border-4 p-2 font-pop font-medium text-bl transition duration-300 ease-linear hover:bg-bl hover:text-blue-300;
 }
 
 .ctg-card {
-    @apply absolute z-10 w-full rounded-t-md bg-gradient-to-r from-bl to-transparent p-3;
+  @apply absolute z-10 w-full rounded-t-md bg-gradient-to-r from-bl to-transparent p-3;
 }
 
 .activ {
-    @apply border-b-2 border-blue-400 text-blue-400;
+  @apply border-b-2 border-blue-400 text-blue-400;
 }
 
 body.header-initial header {
-    @apply bg-transparent transition ease-linear duration-300 text-bl;
+  @apply bg-transparent text-bl transition duration-300 ease-linear;
+}
+body.header-initial header .user-links {
+  @apply text-wh;
 }
 
 body.header-bg header {
-    @apply bg-bl transition ease-linear duration-300 text-wh;
+  @apply bg-bl text-wh transition duration-300 ease-linear;
 }
 
 .form-input {
-    @apply mb-3 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
+  @apply mb-3 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
 }
 
 .user-links {
-    @apply absolute capitalize left-0 top-16 z-50 flex flex-col rounded-md bg-bl p-3 font-pop;
+  @apply absolute left-0 top-16 z-50 flex flex-col rounded-md bg-bl p-3 font-pop capitalize;
 }

@@ -12,26 +12,64 @@ class AuthStore {
     makeObservable(this, {
       user: observable,
       isLoading: observable,
+      createUser: action,
+      logOutUser: action,
+      logInUser: action,
+      setUser: action,
     })
   }
 
   async createUser(email: string, password: string, username: string) {
     this.isLoading = true
-    const res = await register(email, password, username)
-    this.user = res
-    this.isLoading = false
+    try {
+      const res = await register(email, password, username)
+      runInAction(() => {
+        this.user = res
+        this.isLoading = false
+      })
+    } catch (err) {
+      runInAction(() => {
+        this.isLoading = false
+      })
+      console.log(`error from create user auth store ${err}`)
+    } finally {
+      runInAction(() => {
+        this.isLoading = false
+      })
+    }
   }
 
   async logOutUser() {
-    await logOut()
-    this.user = null
+    try {
+      await logOut()
+      this.user = null
+    } catch (err) {
+      console.log(`error from logout auth store ${err}`)
+    }
   }
 
   async logInUser(email: string, password: string) {
     this.isLoading = true
-    const user = await logIn(email, password)
+    try {
+      const user = await logIn(email, password)
+      runInAction(() => {
+        this.user = user
+        this.isLoading = false
+      })
+    } catch (err) {
+      runInAction(() => {
+        this.isLoading = false
+      })
+      console.log(`error from login auth store ${err}`)
+    } finally {
+      runInAction(() => {
+        this.isLoading = false
+      })
+    }
+  }
+
+  setUser(user: IUser) {
     this.user = user
-    this.isLoading = false
   }
 }
 
