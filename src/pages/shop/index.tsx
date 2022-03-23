@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react'
+import { GetServerSideProps } from 'next'
 import { ShopFilter, ItemCard } from '../../components'
 import { queryAllItems } from '../../controlers/item.controler'
 import { useStylesChange } from '../../hooks/useStylesChange'
@@ -27,12 +28,12 @@ const shop: React.FC<Props> = ({ items }) => {
 
 export default observer(shop)
 
-export const getServerSideProps = async () => {
-  const items = await queryAllItems()
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { items } = await queryAllItems()
 
   return {
     props: {
-      items: items.items,
+      items,
     },
   }
 }

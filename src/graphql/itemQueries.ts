@@ -10,3 +10,23 @@ export const GET_ALL_ITEMS = `
           }
     }
 `
+
+export const GET_ITEM_BY_ID = `
+    query getItemsById($id:ID!){
+        item(id:$id){
+        id
+        image
+        price
+        title
+        category
+        description
+        reviews{
+            id
+            title
+            body
+            createdAt
+            updatedAt
+        }
+        }
+    }
+`
