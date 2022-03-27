@@ -14,19 +14,25 @@ export const GET_ALL_ITEMS = `
 export const GET_ITEM_BY_ID = `
     query getItemsById($id:ID!){
         item(id:$id){
-        id
-        image
-        price
-        title
-        category
-        description
-        reviews{
             id
+            image
+            price
             title
-            body
-            createdAt
-            updatedAt
-        }
+            category
+            description
+                reviews{
+                id
+                title
+                body
+                createdAt
+                updatedAt
+                 user{
+                    id
+                    email
+                    username
+                    image
+                }
+            }
         }
     }
 `
