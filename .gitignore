@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-# /constants
+/constants
 # next.js
 /.next/
 /out/

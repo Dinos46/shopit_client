@@ -5,11 +5,10 @@ import {
 } from 'firebase/auth'
 import axios from 'axios'
 import { ADD_User, GET_USER } from '../graphql/userQueries'
-import { appConfig } from '../../constants/appConfig'
 import { auth } from '../services/firebaseService'
 
 const _getFirebaseToken = async () => {
-  axios.defaults.baseURL = appConfig().baseUrl
+  axios.defaults.baseURL = process.env.BASE_URL
   const token = await auth.currentUser?.getIdToken()
   if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
