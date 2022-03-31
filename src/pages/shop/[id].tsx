@@ -48,7 +48,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
         {reviews?.length ? (
           <div>
             {reviews.map((review) => (
-              <ItemReview review={review} />
+              <ItemReview review={review} key={review.id} />
             ))}
           </div>
         ) : null}
