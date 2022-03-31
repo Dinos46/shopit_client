@@ -1,15 +1,15 @@
 import { getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
+import { appConfig } from '../../constants/appConfig'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDh22SV9RexvW-8zGgYX1c6oXg4p9NrHEo',
-  authDomain: 'shopit-fake-store.firebaseapp.com',
-  projectId: 'shopit-fake-store',
-  storageBucket: 'shopit-fake-store.appspot.com',
-  messagingSenderId: '147434054650',
-  appId: '1:147434054650:web:e96378f1522bea20d23a43',
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_ID,
+  appId: process.env.APP_ID,
 }
-// console.log('first',process.env.API_KEY)
 let app
 const apps = getApps()
 if (!apps.length) {
