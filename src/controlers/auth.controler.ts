@@ -8,7 +8,11 @@ import { ADD_User, GET_USER } from '../graphql/userQueries'
 import { auth } from '../services/firebaseService'
 
 const _getFirebaseToken = async () => {
-  axios.defaults.baseURL = process.env.BASE_URL
+  axios.defaults.baseURL =
+    process.env.NODE_ENV === 'production'
+      ? process.env.BASE_URL
+      : process.env.NEXT_PUBLIC_BASE_URL
+
   const token = await auth.currentUser?.getIdToken()
   if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`

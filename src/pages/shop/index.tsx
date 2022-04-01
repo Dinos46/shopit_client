@@ -30,7 +30,6 @@ export default observer(shop)
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const { items } = await queryAllItems()
-
   return {
     props: {
       items,

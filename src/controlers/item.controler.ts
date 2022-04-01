@@ -1,10 +1,14 @@
 import axios from 'axios'
-import { appConfig } from '../../constants/appConfig'
 import { GET_ALL_ITEMS, GET_ITEM_BY_ID } from '../graphql/itemQueries'
+
+axios.defaults.baseURL =
+  process.env.NODE_ENV === 'production'
+    ? process.env.BASE_URL
+    : process.env.NEXT_PUBLIC_APP_BASE_URL
 
 export const queryAllItems = async (ctg = '', name = '') => {
   try {
-    const { data } = await axios.post(appConfig().baseUrl as string, {
+    const { data } = await axios.post('', {
       query: GET_ALL_ITEMS,
       variables: {
         ctg,
@@ -19,7 +23,7 @@ export const queryAllItems = async (ctg = '', name = '') => {
 
 export const queryItemById = async (id: string) => {
   try {
-    const { data } = await axios.post(appConfig().baseUrl as string, {
+    const { data } = await axios.post('', {
       query: GET_ITEM_BY_ID,
       variables: {
         id,
