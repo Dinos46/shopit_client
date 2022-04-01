@@ -5,7 +5,7 @@ import {
 } from 'firebase/auth'
 import axios from 'axios'
 import { ADD_User, GET_USER } from '../graphql/userQueries'
-import { auth } from '../services/firebaseService'
+import { auth } from '../pages/_app'
 
 const _getFirebaseToken = async () => {
   axios.defaults.baseURL =
@@ -29,6 +29,7 @@ export const register = async (
   await _getFirebaseToken()
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password)
+    console.log(res)
     if (res) {
       const queryData = {
         query: ADD_User,

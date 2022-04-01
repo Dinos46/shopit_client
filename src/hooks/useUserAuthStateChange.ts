@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../services/firebaseService'
+import { auth } from '../pages/_app'
 import { useAppContext } from '../store/context/UserContext'
 
 export const useUserAuthStateChange = () => {

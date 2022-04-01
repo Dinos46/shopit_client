@@ -4,7 +4,7 @@ import { GET_ALL_ITEMS, GET_ITEM_BY_ID } from '../graphql/itemQueries'
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'production'
     ? process.env.BASE_URL
-    : process.env.NEXT_PUBLIC_APP_BASE_URL
+    : process.env.NEXT_PUBLIC_BASE_URL
 
 export const queryAllItems = async (ctg = '', name = '') => {
   try {
