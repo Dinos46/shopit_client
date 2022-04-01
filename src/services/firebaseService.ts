@@ -17,7 +17,7 @@ const dev = {
   messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_ID,
   appId: process.env.NEXT_PUBLIC_APP_ID,
 }
-const firebaseConfig = process.env.NODE_ENV === 'production' ? prod : dev
+const firebaseConfig = dev
 let app
 const apps = getApps()
 if (!apps.length) {
