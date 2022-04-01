@@ -17,7 +17,7 @@ const dev = {
   messagingSenderId: '147434054650',
   appId: '1:147434054650:web:e96378f1522bea20d23a43',
 }
-const firebaseConfig = process.env.NODE_ENV === 'production' ? prod : dev
+// const firebaseConfig = process.env.NODE_ENV === 'production' ? prod : dev
 // let app
 // const apps = getApps()
 // if (!apps.length) {
@@ -36,7 +36,7 @@ const firebaseConfig = process.env.NODE_ENV === 'production' ? prod : dev
 export const initFirebase = () => {
   const apps = getApps()
   if (!apps.length) {
-    const app = initializeApp(firebaseConfig)
+    const app = initializeApp(dev)
     const auth = getAuth(app)
     return auth
   }
