@@ -11,7 +11,7 @@ const prod = {
   appId: process.env.NEXT_PUBLIC_APP_ID,
 }
 
-const firebaseConfig = prod
+const firebaseConfig = prod 
 // process.env.NODE_ENV === 'production' ?: fireBaseDev
 const apps = getApps()
 let app = apps[0]
