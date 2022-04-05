@@ -1,6 +1,6 @@
 import { getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { fireBaseDev } from '../../appConfig/config'
+// import { fireBaseDev } from '../../appConfig/config'
 
 const prod = {
   apiKey: process.env.API_KEY,
@@ -11,8 +11,8 @@ const prod = {
   appId: process.env.APP_ID,
 }
 
-const firebaseConfig =
-  process.env.NODE_ENV === 'production' ? prod : fireBaseDev
+const firebaseConfig = prod
+// process.env.NODE_ENV === 'production' ?: fireBaseDev
 const apps = getApps()
 let app = apps[0]
 if (!app) {
