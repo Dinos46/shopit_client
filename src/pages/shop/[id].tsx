@@ -62,9 +62,9 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
 export default ItemDetails
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { items } = await queryAllItems()
+  const data = await queryAllItems()
 
-  const paths = items.map((item: IItem) => ({
+  const paths = data?.items.map((item: IItem) => ({
     params: { id: item.id + '' },
   }))
 
@@ -76,11 +76,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id as string
-  const { item } = await queryItemById(id)
+  const data = await queryItemById(id)
 
   return {
     props: {
-      item,
+      item: data?.item,
     },
   }
 }

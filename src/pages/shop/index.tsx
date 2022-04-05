@@ -31,10 +31,10 @@ const shop: React.FC<Props> = ({ items }) => {
 export default observer(shop)
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { items } = await queryAllItems()
+  const data = await queryAllItems()
   return {
     props: {
-      items,
+      items: data?.items,
     },
   }
 }
