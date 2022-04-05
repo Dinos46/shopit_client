@@ -1,11 +1,17 @@
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../pages/_app'
+import { auth } from '../services/firebaseService'
+import { useEffect } from 'react'
 import { useAppContext } from '../store/context/UserContext'
 
 export const useUserAuthStateChange = () => {
   const { authStore } = useAppContext()
-  onAuthStateChanged(auth, (user) => {
-    console.log('USER', user)
-  })
-  return { user: authStore.user }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log('USER', user?.email)
+      if (user?.email) {
+        await authStore.getUserData(user?.email)
+      }
+    })
+    return unsubscribe
+  }, [])
 }

@@ -18,3 +18,13 @@ export const GET_USER = `
       image
     }
   }`
+
+export const GET_LOGEDIN_USER = `
+  query($email:String!){
+  getLogedInUser(email:$email){
+    id
+    email
+    username
+    image
+  }
+}`

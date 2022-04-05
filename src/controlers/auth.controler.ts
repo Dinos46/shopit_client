@@ -4,14 +4,14 @@ import {
   signOut,
 } from 'firebase/auth'
 import axios from 'axios'
-import { ADD_User, GET_USER } from '../graphql/userQueries'
-import { auth } from '../pages/_app'
+import { ADD_User, GET_LOGEDIN_USER, GET_USER } from '../graphql/userQueries'
+import { auth } from '../services/firebaseService'
+import { baseUrl } from '../../appConfig/config'
+import { IUser } from '../model/user.model'
 
 const _getFirebaseToken = async () => {
   axios.defaults.baseURL =
-    process.env.NODE_ENV === 'production'
-      ? process.env.BASE_URL
-      : process.env.NEXT_PUBLIC_BASE_URL
+    process.env.NODE_ENV === 'production' ? process.env.BASE_URL : baseUrl
 
   const token = await auth.currentUser?.getIdToken()
   if (token) {
@@ -77,6 +77,23 @@ export const logOut = async () => {
     await signOut(auth)
   } catch (err) {
     console.log(`error from auth logOut ${err}`)
+    //TODO error service
+  }
+}
+
+export const getLogedInUser = async (email: string) => {
+  _getFirebaseToken()
+  try {
+    const queryData = {
+      query: GET_LOGEDIN_USER,
+      variables: {
+        email,
+      },
+    }
+    const { data } = await axios.post('', queryData)
+    return data?.data?.getLogedInUser as IUser
+  } catch (err) {
+    console.log(`no loged in user ${err}`)
     //TODO error service
   }
 }

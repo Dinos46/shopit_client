@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import { ShopFilter, ItemCard } from '../../components'
 import { queryAllItems } from '../../controlers/item.controler'
 import { useStylesChange } from '../../hooks/useStylesChange'
+import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
 import { IItem } from '../../model/item.model'
 
 type Props = {
@@ -11,6 +12,7 @@ type Props = {
 
 const shop: React.FC<Props> = ({ items }) => {
   useStylesChange('')
+  useUserAuthStateChange()
 
   if (!items) return <p>Loading...</p>
 

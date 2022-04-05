@@ -1,9 +1,10 @@
 import { Hero, ItemCategory } from '../components'
 import { useStylesChange } from '../hooks/useStylesChange'
+import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
 
 const Home = () => {
   useStylesChange('header')
-  console.log('ENV', process.env.NODE_ENV)
+  useUserAuthStateChange()
   return (
     <div className="h-full">
       <Hero />

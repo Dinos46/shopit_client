@@ -6,6 +6,7 @@ import Image from 'next/image'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import { ItemReview } from '../../components'
+import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
 
 type Props = {
   item: IItem
@@ -15,6 +16,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
   const { category, image, price, title, description, reviews } = item
 
   useStylesChange('')
+  useUserAuthStateChange()
 
   return (
     <section className=" pt-32 text-wh">

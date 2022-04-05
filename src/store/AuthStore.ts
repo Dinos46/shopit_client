@@ -1,5 +1,10 @@
 import { observable, makeObservable, action, runInAction } from 'mobx'
-import { register, logIn, logOut } from '../controlers/auth.controler'
+import {
+  register,
+  logIn,
+  logOut,
+  getLogedInUser,
+} from '../controlers/auth.controler'
 import { IUser } from '../model/user.model'
 import { RootStore } from './RootStore'
 class AuthStore {
@@ -15,7 +20,7 @@ class AuthStore {
       createUser: action,
       logOutUser: action,
       logInUser: action,
-      setUser: action,
+      getUserData: action,
     })
   }
 
@@ -32,10 +37,6 @@ class AuthStore {
         this.isLoading = false
       })
       console.log(`error from create user auth store ${err}`)
-    } finally {
-      runInAction(() => {
-        this.isLoading = false
-      })
     }
   }
 
@@ -61,15 +62,21 @@ class AuthStore {
         this.isLoading = false
       })
       console.log(`error from login auth store ${err}`)
-    } finally {
-      runInAction(() => {
-        this.isLoading = false
-      })
     }
   }
 
-  setUser(user: IUser) {
-    this.user = user
+  async getUserData(email: string) {
+    try {
+      const user = await getLogedInUser(email)
+      runInAction(() => {
+        if (user) {
+          this.user = user
+        }
+        console.log('LOGEDIN USER', user)
+      })
+    } catch (err) {
+      console.log(`error from loged in user auth store ${err}`)
+    }
   }
 }
 

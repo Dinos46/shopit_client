@@ -5,6 +5,7 @@ import { useAppContext } from '../store/context/UserContext'
 import { observer } from 'mobx-react'
 import { useRouter } from 'next/router'
 import { useStylesChange } from '../hooks/useStylesChange'
+import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
 type Props = {
   state: string
 }
@@ -21,6 +22,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   const { email, username, password } = creds
 
   useStylesChange('')
+  useUserAuthStateChange()
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const { name } = e.currentTarget
