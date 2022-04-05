@@ -10,7 +10,7 @@ import { auth } from '../services/firebaseService'
 import { IUser } from '../model/user.model'
 
 const _getFirebaseToken = async () => {
-  axios.defaults.baseURL = process.env.BASE_URL
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
   // process.env.NODE_ENV === 'production' ?  : baseUrl
 
   const token = await auth.currentUser?.getIdToken()
