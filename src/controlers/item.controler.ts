@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { GET_ALL_ITEMS, GET_ITEM_BY_ID } from '../graphql/itemQueries'
 
-axios.defaults.baseURL =
-  process.env.NODE_ENV === 'production'
-    ? process.env.BASE_URL
-    : process.env.NEXT_PUBLIC_BASE_URL
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
+// process.env.NODE_ENV === 'production'
+//   ? process.env.BASE_URL
+//   :
 
 export const queryAllItems = async (ctg = '', name = '') => {
   try {
