@@ -1,4 +1,5 @@
 import { EvForm, EvInput, IFilterBy } from '../model/IFilterBy'
+import FormInput from './FormInput'
 
 type Props = {
   handleChange: (ev: EvInput) => void
@@ -16,34 +17,45 @@ const ShopFilter: React.FC<Props> = ({
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="itemName"
-          placeholder="search item by name"
-          onChange={handleChange}
-          value={itemName}
-        />
-        <input
-          type="number"
-          name="minPrice"
-          placeholder="set min price"
-          onChange={handleChange}
-          value={minPrice}
-        />
-        <input
-          type="number"
-          name="maxPrice"
-          placeholder="set max price"
-          onChange={handleChange}
-          value={maxPrice}
-        />
-        <input
-          type="text"
-          name="ctg"
-          placeholder="search item by name"
-          onChange={handleChange}
-          value={ctg}
-        />
+        <div>
+          <label htmlFor="name">filter by name</label>
+          <FormInput
+            handler={handleChange}
+            name={'itemName'}
+            placeholder={'search items by name...'}
+            type={'text'}
+            val={itemName}
+            id={'name'}
+          />
+        </div>
+        <div>
+          <div>
+            <label htmlFor="name">filter by name</label>
+            <FormInput
+              type={'number'}
+              name={'minPrice'}
+              placeholder={'set min price'}
+              handler={handleChange}
+              val={+minPrice}
+            />
+            <label htmlFor="name">filter by name</label>
+            <FormInput
+              type={'number'}
+              name={'maxPrice'}
+              placeholder={'set max price'}
+              handler={handleChange}
+              val={+maxPrice}
+            />
+          </div>
+          {/* <select onChange={handleChange} name="ctg" ></select>
+          <input
+            type=""
+            name="ctg"
+            placeholder="search item by name"
+            
+            value={ctg}
+          /> */}
+        </div>
         <button>filter</button>
       </form>
     </section>
