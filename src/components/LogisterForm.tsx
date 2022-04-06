@@ -6,6 +6,7 @@ import { observer } from 'mobx-react'
 import { useRouter } from 'next/router'
 import { useStylesChange } from '../hooks/useStylesChange'
 import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
+import { EvInput, EvForm } from '../model/IFilterBy'
 type Props = {
   state: string
 }
@@ -24,17 +25,17 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   useStylesChange('')
   useUserAuthStateChange()
 
-  const handleChange = (e: FormEvent<HTMLInputElement>) => {
-    const { name } = e.currentTarget
-    const { value } = e.currentTarget
+  const handleChange = (ev: EvInput) => {
+    const { name } = ev.currentTarget
+    const { value } = ev.currentTarget
     setCreds((prevCreds) => ({
       ...prevCreds,
       [name]: value,
     }))
   }
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = async (ev: EvForm) => {
+    ev.preventDefault()
     pathname === '/register'
       ? authStore.createUser(email, password, username)
       : authStore.logInUser(email, password)
