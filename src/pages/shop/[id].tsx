@@ -7,6 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import { ItemReview } from '../../components'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
+import HeadInfo from '../../components/HeadInfo'
 
 type Props = {
   item: IItem
@@ -20,6 +21,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
 
   return (
     <section className=" pt-32 text-wh">
+      <HeadInfo des={'details page for each otem'} title={'item-page'} />
       <div className="flex flex-row">
         <div className="mr-4 flex-1 rounded-md bg-white p-1 ">
           <Image

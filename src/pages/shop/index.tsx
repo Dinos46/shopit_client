@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react'
 import { GetServerSideProps } from 'next'
 import { ShopFilter, ItemCard } from '../../components'
+import HeadInfo from '../../components/HeadInfo'
 import { queryAllItems } from '../../controlers/item.controler'
 import { useStylesChange } from '../../hooks/useStylesChange'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
@@ -18,6 +19,7 @@ const shop: React.FC<Props> = ({ items }) => {
 
   return (
     <section className="pt-52">
+      <HeadInfo des={'store items collection'} title={'shop'} />
       <ShopFilter />
       <section className="grid grid-cols-auto-fit gap-6">
         {items?.map((item) => (
