@@ -48,7 +48,7 @@ const shop: React.FC<Props> = ({ items }) => {
   }, [])
 
   return (
-    <section className="pt-52">
+    <section className="pt-36">
       <HeadInfo des={'store items collection'} title={'shop'} />
       <ShopFilter
         handleChange={handleChange}

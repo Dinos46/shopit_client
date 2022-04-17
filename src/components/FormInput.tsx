@@ -8,6 +8,7 @@ type Props = {
   handler: (ev: EvInput) => void
   val: string | number
   id?: string
+  style?: string
 }
 
 const FormInput: React.FC<Props> = ({
@@ -17,9 +18,11 @@ const FormInput: React.FC<Props> = ({
   type,
   val,
   id,
+  style,
 }) => {
   return (
     <input
+      className={style}
       type={type}
       name={name}
       placeholder={placeholder}
