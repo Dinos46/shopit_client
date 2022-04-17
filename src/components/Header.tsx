@@ -4,7 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useAppContext } from '../store/context/UserContext'
 
 const Header = () => {
@@ -12,18 +12,18 @@ const Header = () => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
 
-  const handleClickAway = () => {
+  const handleClickAway = useCallback(() => {
     setOpen(false)
-  }
+  }, [open, setOpen])
 
-  const onToggleMenu = () => {
+  const onToggleMenu = useCallback(() => {
     setOpen((prev) => !prev)
-  }
+  }, [open, setOpen])
 
-  const onLogOut = async () => {
+  const onLogOut = useCallback(async () => {
     await authStore.logOutUser()
     router.pathname !== '/' ? router.push('/') : window.scrollTo(0, 0)
-  }
+  }, [])
 
   return (
     <header className="fixed z-40 w-full">

@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react'
 import { GetServerSideProps } from 'next'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { ShopFilter, ItemCard } from '../../components'
 import HeadInfo from '../../components/HeadInfo'
 import { queryAllItems } from '../../controlers/item.controler'
@@ -30,19 +30,22 @@ const shop: React.FC<Props> = ({ items }) => {
     ctg: '',
   })
 
-  const handleChange = (ev: EvInput) => {
-    const { name } = ev.currentTarget
-    const { value } = ev.currentTarget
-    setFilter((prevFilter) => ({
-      ...prevFilter,
-      [name]: value,
-    }))
-  }
+  const handleChange = useCallback(
+    (ev: EvInput) => {
+      const { name } = ev.currentTarget
+      const { value } = ev.currentTarget
+      setFilter((prevFilter) => ({
+        ...prevFilter,
+        [name]: value,
+      }))
+    },
+    [filter, setFilter]
+  )
 
-  const handleSubmit = async (ev: EvForm) => {
+  const handleSubmit = useCallback(async (ev: EvForm) => {
     ev.preventDefault()
     await getFilteredItems(filter)
-  }
+  }, [])
 
   return (
     <section className="pt-52">

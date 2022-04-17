@@ -1,6 +1,5 @@
 import { getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-// import { fireBaseDev } from '../../appConfig/config'
 
 const prod = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -11,12 +10,10 @@ const prod = {
   appId: process.env.NEXT_PUBLIC_APP_ID,
 }
 
-const firebaseConfig = prod
-
 const apps = getApps()
 let app = apps[0]
 if (!app) {
-  app = initializeApp(firebaseConfig)
+  app = initializeApp(prod)
 }
 
 export const auth = getAuth(app)

@@ -6,12 +6,10 @@ import {
 import axios from 'axios'
 import { ADD_User, GET_LOGEDIN_USER, GET_USER } from '../graphql/userQueries'
 import { auth } from '../services/firebaseService'
-// import { baseUrl } from '../../appConfig/config'
 import { IUser } from '../model/user.model'
 
 const _getFirebaseToken = async () => {
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
-  // process.env.NODE_ENV === 'production' ?  : baseUrl
 
   const token = await auth.currentUser?.getIdToken()
   if (token) {

@@ -7,7 +7,6 @@ export const useUserAuthStateChange = () => {
   const { authStore } = useAppContext()
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log('USER', user?.email)
       if (user?.email) {
         await authStore.getUserData(user?.email)
       }

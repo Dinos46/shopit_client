@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { useAppContext } from '../store/context/UserContext'
 import { observer } from 'mobx-react'
@@ -25,21 +25,24 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   useStylesChange('')
   useUserAuthStateChange()
 
-  const handleChange = (ev: EvInput) => {
-    const { name } = ev.currentTarget
-    const { value } = ev.currentTarget
-    setCreds((prevCreds) => ({
-      ...prevCreds,
-      [name]: value,
-    }))
-  }
+  const handleChange = useCallback(
+    (ev: EvInput) => {
+      const { name } = ev.currentTarget
+      const { value } = ev.currentTarget
+      setCreds((prevCreds) => ({
+        ...prevCreds,
+        [name]: value,
+      }))
+    },
+    [creds, setCreds]
+  )
 
-  const handleSubmit = async (ev: EvForm) => {
+  const handleSubmit = useCallback(async (ev: EvForm) => {
     ev.preventDefault()
     pathname === '/register'
       ? authStore.createUser(email, password, username)
       : authStore.logInUser(email, password)
-  }
+  }, [])
 
   return (
     <section className="flex h-screen py-2 pt-28 text-wh">

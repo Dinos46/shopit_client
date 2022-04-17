@@ -5,7 +5,7 @@ const register = () => {
   return (
     <>
       <HeadInfo des={'register page for users'} title={'Register'} />
-      <LogisterForm state={'login'} />
+      <LogisterForm state={'register'} />
     </>
   )
 }

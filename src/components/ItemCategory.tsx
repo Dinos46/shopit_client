@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 const ItemCategory = () => {
   const router = useRouter()
@@ -11,8 +11,7 @@ const ItemCategory = () => {
     'electronics',
   ])
 
-  const handleClick = (ctg: string) => {
-    console.log(`query param passed : ${ctg}`)
+  const handleClick = useCallback((ctg: string) => {
     const params = {
       pathname: '/shop',
       query: {
@@ -20,7 +19,7 @@ const ItemCategory = () => {
       },
     }
     router.push(params)
-  }
+  }, [])
 
   return (
     <section className=" mt-5 grid h-1/6 grid-cols-2 grid-rows-2 gap-7">
