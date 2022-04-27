@@ -26,6 +26,7 @@ export const register = async (
 ) => {
   await _getFirebaseToken()
   try {
+    console.log('CREDS', email, password)
     const res = await createUserWithEmailAndPassword(auth, email, password)
     console.log(res)
     if (res) {
@@ -43,6 +44,7 @@ export const register = async (
       }
     }
   } catch (err) {
+    // console.log('CREDS', auth, email, password)
     console.log(`error from auth register ${err}`)
     //TODO error service
   }

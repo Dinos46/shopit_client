@@ -33,23 +33,28 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
         ...prevCreds,
         [name]: value,
       }))
+      console.debug('HANDLE', email, password, username)
     },
-    [creds, setCreds]
+    [creds]
   )
 
-  const handleSubmit = useCallback(async (ev: EvForm) => {
-    ev.preventDefault()
-    pathname === '/register'
-      ? authStore.createUser(email, password, username)
-      : authStore.logInUser(email, password)
-  }, [])
+  const handleSubmit = useCallback(
+    async (ev: EvForm) => {
+      ev.preventDefault()
+      console.debug('FORM', email, password, username)
+      if (!email && !password) return
+      pathname === '/register'
+        ? authStore.createUser(email, password, username)
+        : authStore.logInUser(email, password)
+    },
+    [creds]
+  )
 
   return (
     <section className="flex h-screen py-2 pt-28 text-wh">
       <section className=" flex w-1/3 flex-col items-center p-5">
         <AccountCircleIcon className="mb-2  text-7xl text-blue-300" />
         {authStore.user && JSON.stringify(authStore.user, null, 2)}
-
         <h1 className="mb-4  font-pop text-2xl capitalize">{state}</h1>
         <form onSubmit={handleSubmit} className="flex w-full  flex-col">
           {state === 'register' && (

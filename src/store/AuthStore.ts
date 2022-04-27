@@ -25,6 +25,7 @@ class AuthStore {
   }
 
   async createUser(email: string, password: string, username: string) {
+    console.debug('STORE', email, password, username)
     this.isLoading = true
     try {
       const res = await register(email, password, username)
@@ -72,7 +73,7 @@ class AuthStore {
         if (user) {
           this.user = user
         }
-        console.log('LOGEDIN USER', user)
+        // console.log('LOGEDIN USER', user)
       })
     } catch (err) {
       console.log(`error from loged in user auth store ${err}`)
