@@ -6,14 +6,12 @@ import {
   getLogedInUser,
 } from '../controlers/auth.controler'
 import { IUser } from '../model/user.model'
-import { RootStore } from './RootStore'
-class AuthStore {
-  isLoading: boolean = false
-  user: IUser | null = null
-  rootStore: RootStore
 
-  constructor(rootStore: RootStore) {
-    this.rootStore = rootStore
+class AuthStore {
+  isLoading = false
+  user: IUser | null = null
+
+  constructor() {
     makeObservable(this, {
       user: observable,
       isLoading: observable,
@@ -25,7 +23,6 @@ class AuthStore {
   }
 
   async createUser(email: string, password: string, username: string) {
-    console.debug('STORE', email, password, username)
     this.isLoading = true
     try {
       const res = await register(email, password, username)

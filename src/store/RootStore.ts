@@ -6,8 +6,8 @@ export class RootStore {
   itemStore: ItemStore
 
   constructor() {
-    this.authStore = new AuthStore(this)
-    this.itemStore = new ItemStore(this)
+    this.authStore = new AuthStore()
+    this.itemStore = new ItemStore()
   }
 }
 

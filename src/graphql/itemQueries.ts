@@ -1,6 +1,6 @@
 export const GET_ALL_ITEMS = `
-    query getAllItems($ctg:String,$name:String){
-        items(filter:{ctg:$ctg,name:$name}){
+    query Items($ctg:String,$minPrice:Int,$maxPrice:Int,$name:String){
+        items(filter:{ctg:$ctg,minPrice:$minPrice,maxPrice:$maxPrice,name:$name}){
             title
             category
             price

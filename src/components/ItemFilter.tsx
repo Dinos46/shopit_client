@@ -7,12 +7,12 @@ type Props = {
   filter: IFilterBy
 }
 
-const ShopFilter: React.FC<Props> = ({
+const ItemFilter: React.FC<Props> = ({
   handleSubmit,
   handleChange,
   filter,
 }) => {
-  const { ctg, itemName, maxPrice, minPrice } = filter
+  const { ctg, name, maxPrice, minPrice } = filter
 
   return (
     <section className="mb-3 rounded-md p-2">
@@ -20,10 +20,10 @@ const ShopFilter: React.FC<Props> = ({
         <div className="w-[68%]">
           <FormInput
             handler={handleChange}
-            name={'itemName'}
+            name={'name'}
             placeholder={'search items by name...'}
             type={'text'}
-            val={itemName}
+            val={name}
             id={'name'}
             style="filter-input w-full mb-2"
           />
@@ -69,4 +69,4 @@ const ShopFilter: React.FC<Props> = ({
   )
 }
 
-export default ShopFilter
+export default ItemFilter

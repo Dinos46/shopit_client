@@ -1,37 +1,38 @@
 import { IItem } from '../model/item.model'
-import { RootStore } from './RootStore'
-import { observable, makeObservable, action, runInAction } from 'mobx'
+import { observable, makeObservable, action, runInAction, toJS } from 'mobx'
 import { IFilterBy } from '../model/IFilterBy'
 import { queryAllItems } from '../controlers/item.controler'
 
 class ItemStore {
-  rootStore: RootStore
-  filterItems: IItem[] | null = null
-  isLoading: boolean = false
+  isLoading = false
+  items: IItem[] | null = null
 
-  constructor(rootStore: RootStore) {
-    this.rootStore = rootStore
-
+  constructor() {
     makeObservable(this, {
-      filterItems: observable,
-      isLoading: observable,
+      items: observable,
       getFilteredItems: action,
+      setItems: action,
     })
   }
 
   async getFilteredItems(filter: IFilterBy) {
     this.isLoading = true
     try {
-      const items = await queryAllItems(filter)
-      console.log('FILTER_STORE', items)
+      const { items } = await queryAllItems(filter)
       runInAction(() => {
-        this.filterItems = items
+        this.setItems(items)
         this.isLoading = false
       })
     } catch (err) {
-      this.isLoading = false
+      runInAction(() => {
+        this.isLoading = false
+      })
       console.log('error from item store cannot filter', err)
     }
+  }
+
+  setItems(items: IItem[]) {
+    this.items = items
   }
 }
 

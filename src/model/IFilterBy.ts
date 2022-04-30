@@ -1,7 +1,7 @@
 import { FormEvent } from 'react'
 
 export interface IFilterBy {
-  itemName: string
+  name: string
   maxPrice: number
   minPrice: number
   ctg: string
