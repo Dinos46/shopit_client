@@ -7,5 +7,5 @@ export interface IFilterBy {
   ctg: string
 }
 
-export type EvInput = FormEvent<HTMLInputElement>
+export type EvInput = FormEvent<HTMLInputElement | HTMLSelectElement>
 export type EvForm = FormEvent<HTMLFormElement>

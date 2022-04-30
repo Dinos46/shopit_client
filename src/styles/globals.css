@@ -57,7 +57,7 @@ body.header-bg header {
 }
 
 .filter-input {
-  @apply rounded-md bg-gray-200 p-1 px-2 font-pop;
+  @apply rounded-md bg-gray-200 p-1 px-2 font-pop outline-none;
 }
 
 .filter-btn {

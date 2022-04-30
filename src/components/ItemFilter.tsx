@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { EvForm, EvInput, IFilterBy } from '../model/IFilterBy'
 import FormInput from './FormInput'
 
@@ -12,7 +13,14 @@ const ItemFilter: React.FC<Props> = ({
   handleChange,
   filter,
 }) => {
-  const { ctg, name, maxPrice, minPrice } = filter
+  const { name, maxPrice, minPrice } = filter
+
+  const [options] = useState([
+    `women's clothing`,
+    `jewelery`,
+    `electronics`,
+    `men's clothing`,
+  ])
 
   return (
     <section className="mb-3 rounded-md p-2">
@@ -54,14 +62,14 @@ const ItemFilter: React.FC<Props> = ({
               style="filter-input mr-2 w-1/6"
             />
           </div>
-          {/* <select onChange={handleChange} name="ctg" ></select>
-          <input
-          type=""
-            name="ctg"
-            placeholder="search item by name"
-            
-            value={ctg}
-          /> */}
+          <select onChange={handleChange} name="ctg">
+            {options.map((opt) => (
+              <option value={opt} key={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
+
           <button className="filter-btn">filter</button>
         </div>
       </form>
