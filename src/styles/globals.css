@@ -61,5 +61,5 @@ body.header-bg header {
 }
 
 .filter-btn {
-  @apply w-1/3 cursor-pointer rounded-md bg-gray-200 p-1 px-2 font-pop transition duration-200 ease-linear hover:bg-bl hover:text-blue-300;
+  @apply h-[2.2rem] w-[20%] cursor-pointer rounded-md bg-gray-200 p-1 px-2 font-pop transition duration-200 ease-linear hover:border-2 hover:border-pink-200 hover:bg-bl hover:text-wh;
 }

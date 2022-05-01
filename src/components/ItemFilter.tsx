@@ -25,7 +25,7 @@ const ItemFilter: React.FC<Props> = ({
   return (
     <section className="mb-3 rounded-md p-2">
       <form className="flex flex-col items-center p-1" onSubmit={handleSubmit}>
-        <div className="w-[68%]">
+        <div className="mb-1 flex w-full flex-row items-center justify-between p-1">
           <FormInput
             handler={handleChange}
             name={'name'}
@@ -33,11 +33,22 @@ const ItemFilter: React.FC<Props> = ({
             type={'text'}
             val={name}
             id={'name'}
-            style="filter-input w-full mb-2"
+            style="filter-input w-3/4 "
           />
+          <select
+            className="rounded-md bg-gray-200 p-1 font-pop text-bl outline-none"
+            onChange={handleChange}
+            name="ctg"
+          >
+            {options.map((opt) => (
+              <option value={opt} key={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
         </div>
 
-        <div className="flex flex-row p-1">
+        <div className="mb-1 flex w-full flex-row justify-between p-1">
           <div>
             <label className="filter-label" htmlFor="name">
               set min price
@@ -50,7 +61,7 @@ const ItemFilter: React.FC<Props> = ({
               val={+minPrice}
               style="filter-input mr-2 w-1/6"
             />
-            <label className="filter-label" htmlFor="name">
+            <label className="filter-label ml-3" htmlFor="name">
               set max price
             </label>
             <FormInput
@@ -62,13 +73,6 @@ const ItemFilter: React.FC<Props> = ({
               style="filter-input mr-2 w-1/6"
             />
           </div>
-          <select onChange={handleChange} name="ctg">
-            {options.map((opt) => (
-              <option value={opt} key={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
 
           <button className="filter-btn">filter</button>
         </div>
