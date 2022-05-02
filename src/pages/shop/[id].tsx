@@ -50,7 +50,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
       </div>
       <div>
         {reviews?.length ? (
-          <div>
+          <div className="grid grid-cols-auto-fit">
             {reviews.map((review) => (
               <ItemReview review={review} key={review.id} />
             ))}

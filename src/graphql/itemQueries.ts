@@ -26,6 +26,7 @@ export const GET_ITEM_BY_ID = `
                 body
                 createdAt
                 updatedAt
+                rating
                  user{
                     id
                     email

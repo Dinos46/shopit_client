@@ -63,3 +63,7 @@ body.header-bg header {
 .filter-btn {
   @apply h-[2.2rem] w-[20%] cursor-pointer rounded-md bg-gray-200 p-1 px-2 font-pop transition duration-200 ease-linear hover:border-2 hover:border-pink-200 hover:bg-bl hover:text-wh;
 }
+
+.css-1c99szj-MuiRating-icon {
+  color: white;
+}
