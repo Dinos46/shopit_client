@@ -17,6 +17,7 @@ const StarsRating: React.FC<Props> = ({ name, isReadOnly, handler, value }) => {
         readOnly={isReadOnly}
         value={value}
         onChange={(event, newValue) => {
+          console.log('first', newValue)
           handler ? handler(newValue) : null
         }}
       />

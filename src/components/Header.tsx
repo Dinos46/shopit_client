@@ -14,11 +14,11 @@ const Header = () => {
 
   const handleClickAway = useCallback(() => {
     setOpen(false)
-  }, [open, setOpen])
+  }, [open])
 
   const onToggleMenu = useCallback(() => {
     setOpen((prev) => !prev)
-  }, [open, setOpen])
+  }, [open])
 
   const onLogOut = useCallback(async () => {
     await authStore.logOutUser()

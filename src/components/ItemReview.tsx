@@ -1,7 +1,6 @@
 import { IReview } from '../model/review.model'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import StarsRating from './StarsRating'
-import { useState } from 'react'
 
 type Props = {
   review: IReview

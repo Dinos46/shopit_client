@@ -67,3 +67,7 @@ body.header-bg header {
 .css-1c99szj-MuiRating-icon {
   color: white;
 }
+
+.review-form-input {
+  @apply w-[50%] rounded-md bg-wh p-2 text-bl;
+}

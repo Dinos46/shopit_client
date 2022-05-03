@@ -8,6 +8,8 @@ import AddIcon from '@mui/icons-material/Add'
 import { ItemReview } from '../../components'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
 import HeadInfo from '../../components/HeadInfo'
+import ReviewForm from '../../components/ReviewForm'
+import { useCallback, useState } from 'react'
 
 type Props = {
   item: IItem
@@ -15,9 +17,15 @@ type Props = {
 
 const ItemDetails: React.FC<Props> = ({ item }) => {
   const { category, image, price, title, description, reviews } = item
+  const [open, setOpen] = useState(true)
 
   useStylesChange('')
   useUserAuthStateChange()
+
+  const setIsOpen = useCallback(() => {
+    setOpen(false)
+    // console.log('AWAY', e)
+  }, [open])
 
   return (
     <section className=" pt-32 text-wh">
@@ -57,6 +65,8 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
           </div>
         ) : null}
       </div>
+      <div>{open && <ReviewForm setIsOpen={setIsOpen} />}</div>
+      <button onClick={() => setOpen(true)}>open</button>
     </section>
   )
 }
