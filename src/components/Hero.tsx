@@ -11,7 +11,7 @@ const Hero = () => {
         <h3 className="mb-3 font-pop text-2xl font-light text-gray-800 md:text-3xl">
           some subtitle text here
         </h3>
-        <button className="btn">
+        <button className="btn text-bl  hover:bg-bl hover:text-blue-300">
           <Link href="/shop">explore our store</Link>
         </button>
       </div>

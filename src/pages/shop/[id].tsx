@@ -41,7 +41,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
             alt="item"
           />
         </div>
-        <div className="w-2/4 font-pop text-wh">
+        <div className="flex w-2/4 flex-col font-pop text-wh">
           <h2 className="mb-3 text-3xl text-white">{title}</h2>
           <h3 className="mb-3 text-2xl opacity-90">category: {category}</h3>
           <p className="mb-3 text-lg  leading-7 opacity-90">{description}</p>
@@ -54,6 +54,13 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
               <RemoveIcon />
             </button>
           </div>
+          <p className="flex-1"></p>
+          <button
+            className="btn border-wl self-center bg-transparent p-2 text-wh hover:border-bl hover:text-pink-200"
+            onClick={() => setOpen(true)}
+          >
+            add a comment
+          </button>
         </div>
       </div>
       <div>
@@ -66,7 +73,6 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
         ) : null}
       </div>
       <div>{open && <ReviewForm setIsOpen={setIsOpen} />}</div>
-      <button onClick={() => setOpen(true)}>open</button>
     </section>
   )
 }

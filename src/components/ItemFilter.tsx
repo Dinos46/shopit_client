@@ -74,7 +74,7 @@ const ItemFilter: React.FC<Props> = ({
             />
           </div>
 
-          <button className="filter-btn">filter</button>
+          <button className="filter-btn btn">filter</button>
         </div>
       </form>
     </section>

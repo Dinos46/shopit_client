@@ -9,6 +9,7 @@ class ItemStore {
 
   constructor() {
     makeObservable(this, {
+      isLoading: observable,
       items: observable,
       getFilteredItems: action,
       setItems: action,

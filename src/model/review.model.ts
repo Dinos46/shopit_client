@@ -9,3 +9,12 @@ export interface IReview {
   updatedAt: string
   user: IUser
 }
+
+export interface IReviewInput {
+  id?: string
+  title: string
+  body: string
+  rating: string
+  itemId: string
+  userId: string
+}

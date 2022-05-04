@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* general */
 html {
   @apply scroll-smooth;
 }
@@ -12,27 +13,28 @@ body {
   height: 100%;
   @apply bg-bgc;
 }
+.btn {
+  @apply cursor-pointer rounded-md border-[3px] p-2 font-pop capitalize  transition duration-300 ease-linear;
+}
 
+.form-input {
+  @apply mb-3 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
+}
+
+.css-1c99szj-MuiRating-icon {
+  color: white;
+}
+
+/* navigation top bar */
 .nav {
   @apply mx-auto flex w-full  max-w-6xl items-center  justify-between p-5 font-pop;
-}
-
-.footer {
-  @apply mt-5 flex flex-col items-center justify-center bg-bl p-1 font-pop;
-}
-
-.btn {
-  @apply rounded-lg border-4 p-2 font-pop font-medium text-bl transition duration-300 ease-linear hover:bg-bl hover:text-blue-300;
-}
-
-.ctg-card {
-  @apply absolute z-10 w-full rounded-t-md bg-gradient-to-r from-bl to-transparent p-3;
 }
 
 .activ {
   @apply border-b-2 border-blue-400 text-blue-400;
 }
 
+/**************** app header *************/
 body.header-initial header {
   @apply bg-transparent text-bl transition duration-300 ease-linear;
 }
@@ -44,14 +46,19 @@ body.header-bg header {
   @apply bg-bl text-wh transition duration-300 ease-linear;
 }
 
-.form-input {
-  @apply mb-3 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
-}
-
 .user-links {
   @apply absolute left-0 top-16 z-50 flex flex-col rounded-md bg-bl p-3 font-pop capitalize;
 }
+/********************* footer ******************/
+.footer {
+  @apply mt-5 flex flex-col items-center justify-center bg-bl p-1 font-pop;
+}
+/******************* hero section **************/
+.ctg-card {
+  @apply absolute z-10 w-full rounded-t-md bg-gradient-to-r from-bl to-transparent p-3;
+}
 
+/******************* filter component ****************/
 .filter-label {
   @apply mr-3 font-pop text-lg text-wh;
 }
@@ -61,13 +68,10 @@ body.header-bg header {
 }
 
 .filter-btn {
-  @apply h-[2.2rem] w-[20%] cursor-pointer rounded-md bg-gray-200 p-1 px-2 font-pop transition duration-200 ease-linear hover:border-2 hover:border-pink-200 hover:bg-bl hover:text-wh;
+  @apply h-[35px] w-[20%] bg-gray-200 p-[0.2rem] p-[0.2rem] hover:border-2 hover:border-pink-200 hover:bg-bl hover:text-wh;
 }
 
-.css-1c99szj-MuiRating-icon {
-  color: white;
-}
-
+/*********************** reviws form ****************/
 .review-form-input {
   @apply w-[50%] rounded-md bg-wh p-2 text-bl;
 }
