@@ -15,6 +15,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(270px, 1fr))',
+        reviews: 'repeat(2, 1fr)',
       },
     },
   },

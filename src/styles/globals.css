@@ -11,7 +11,7 @@ html {
 
 body {
   height: 100%;
-  @apply bg-bgc;
+  @apply relative bg-bgc;
 }
 .btn {
   @apply cursor-pointer rounded-md border-[3px] p-2 font-pop capitalize  transition duration-300 ease-linear;
@@ -72,6 +72,14 @@ body.header-bg header {
 }
 
 /*********************** reviws form ****************/
+.review-form {
+  @apply flex h-[50%] w-[50%] flex-col items-center justify-center rounded-md bg-slate-600 p-3 font-pop;
+}
+
 .review-form-input {
   @apply w-[50%] rounded-md bg-wh p-2 text-bl;
+}
+
+.review-modal {
+  @apply absolute inset-0 z-50 flex h-full w-full items-center justify-center bg-black/60 backdrop-blur-sm;
 }

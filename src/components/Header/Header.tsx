@@ -5,7 +5,8 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import { useCallback, useState } from 'react'
-import { useAppContext } from '../store/context/UserContext'
+import { useAppContext } from '../../store/context/UserContext'
+import UserMenu from './UserMenu'
 
 const Header = () => {
   const { authStore } = useAppContext()
@@ -62,19 +63,7 @@ const Header = () => {
               <MenuOpenIcon className="ml-3" />
 
               <div>
-                {open && (
-                  <ul className="user-links ">
-                    <li>
-                      <Link href="/register">register</Link>
-                    </li>
-                    <li className="my-2">
-                      <Link href="/login">login</Link>
-                    </li>
-                    <li>
-                      <button onClick={onLogOut}>logout</button>
-                    </li>
-                  </ul>
-                )}
+                {open && <UserMenu user={authStore.user} onLogOut={onLogOut} />}
               </div>
             </div>
           </ClickAwayListener>

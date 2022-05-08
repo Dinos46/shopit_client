@@ -49,15 +49,14 @@ export const queryItemById = async (id: string) => {
 }
 
 export const mutateReview = async (reviewToAdd: IReviewInput) => {
-  console.log(reviewToAdd)
   await _getFirebaseToken()
   const query = reviewToAdd.id ? UPDATE_REVIEW : CREATE_REVIEW
+  console.log('ADDD', reviewToAdd)
   try {
     const { data } = await axios.post('', {
       query,
       variables: reviewToAdd,
     })
-    console.log(data)
     return data
   } catch (err) {
     console.log(`error from controller mutate a review`, err)

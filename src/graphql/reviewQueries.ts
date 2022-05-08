@@ -1,5 +1,5 @@
 export const CREATE_REVIEW = `
-mutation addReview($title:String!,$body:String!,$rating:String!,$itemId:String!,$userId:String!){
+mutation addReview($title:String!,$body:String!,$rating:Int!,$itemId:String!,$userId:String!){
     addReview(reviewInput:{
         title:$title,
         body:$body,

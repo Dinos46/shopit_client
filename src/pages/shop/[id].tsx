@@ -10,6 +10,7 @@ import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
 import HeadInfo from '../../components/HeadInfo'
 import ReviewForm from '../../components/ReviewForm'
 import { useCallback, useState } from 'react'
+import { useAppContext } from '../../store/context/UserContext'
 
 type Props = {
   item: IItem
@@ -17,18 +18,20 @@ type Props = {
 
 const ItemDetails: React.FC<Props> = ({ item }) => {
   const { category, image, price, title, description, reviews } = item
-  const [open, setOpen] = useState(true)
-
+  const [open, setOpen] = useState(false)
+  const { authStore } = useAppContext()
   useStylesChange('')
   useUserAuthStateChange()
 
-  const setIsOpen = useCallback(() => {
-    setOpen(false)
-    // console.log('AWAY', e)
-  }, [open])
+  const setIsOpen = useCallback(
+    (isOpen: boolean) => {
+      setOpen(isOpen)
+    },
+    [open]
+  )
 
   return (
-    <section className=" pt-32 text-wh">
+    <section className=" px-3 pt-32 text-wh">
       <HeadInfo des={'details page for each otem'} title={'item-page'} />
       <div className="flex flex-row">
         <div className="mr-4 flex-1 rounded-md bg-white p-1 ">
@@ -55,17 +58,23 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
             </button>
           </div>
           <p className="flex-1"></p>
+        </div>
+      </div>
+      <div className="mt-8 flex flex-col">
+        {authStore.user ? (
           <button
             className="btn border-wl self-center bg-transparent p-2 text-wh hover:border-bl hover:text-pink-200"
-            onClick={() => setOpen(true)}
+            onClick={() => setIsOpen(true)}
           >
             add a comment
           </button>
-        </div>
-      </div>
-      <div>
+        ) : (
+          <h2 className="self-center text-2xl">
+            please login to add a comment...
+          </h2>
+        )}
         {reviews?.length ? (
-          <div className="grid grid-cols-auto-fit">
+          <div className="grid items-center gap-5 md:grid-cols-reviews">
             {reviews.map((review) => (
               <ItemReview review={review} key={review.id} />
             ))}

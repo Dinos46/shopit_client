@@ -13,11 +13,9 @@ const StarsRating: React.FC<Props> = ({ name, isReadOnly, handler, value }) => {
     <div>
       <Rating
         name={name}
-        precision={0.5}
         readOnly={isReadOnly}
         value={value}
         onChange={(event, newValue) => {
-          console.log('first', newValue)
           handler ? handler(newValue) : null
         }}
       />

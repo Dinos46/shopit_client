@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { EvForm } from '../model/IFilterBy'
 import StarsRating from './StarsRating'
 import CloseIcon from '@mui/icons-material/Close'
@@ -6,55 +6,58 @@ import { useAppContext } from '../store/context/UserContext'
 import { useRouter } from 'next/router'
 
 type Props = {
-  setIsOpen: () => void
+  setIsOpen: (isOpen: boolean) => void
 }
 
 const ReviewForm: React.FC<Props> = ({ setIsOpen }) => {
   const route = useRouter()
-  const titleRef = useRef(null)
-  const bodyRef = useRef(null)
+  const [titleInput, setTitleInput] = useState<string>('')
+  const [bodyInput, setBodyInput] = useState<string>('')
   const [rate, setRate] = useState<number | null>(0)
   const { reviewStore, authStore } = useAppContext()
-
-  useEffect(() => {}, [])
 
   const handleSubmit = useCallback(
     async (ev: EvForm) => {
       ev.preventDefault()
-      console.log(
-        'Rating',
-
-        rate
-      )
       const itemId = route.query.id as string
       const reviewToAdd = {
-        //@ts-ignore
-        body: bodyRef?.current?.value,
-        //@ts-ignore
-        title: titleRef?.current?.value,
-        rating: rate ? rate + '' : '',
+        body: bodyInput,
+        title: titleInput,
+        rating: rate || 0,
         userId: authStore.user?.id!,
         itemId,
       }
-
       await reviewStore.createReview(reviewToAdd)
+      resetForm()
     },
     [rate]
   )
 
+  const resetForm = () => {
+    setRate(0)
+    setTitleInput('')
+    setBodyInput('')
+    setIsOpen(false)
+  }
+
   return (
-    <div className="absolute inset-0 z-50 flex h-full w-full items-center justify-center bg-black/60 backdrop-blur-sm">
-      <form
-        className="flex h-[50%] w-[50%] flex-col items-center justify-center rounded-md bg-slate-600 p-3 font-pop"
-        onSubmit={handleSubmit}
-      >
-        <button className=" self-end" onClick={setIsOpen}>
+    <div className="review-modal">
+      <form className="review-form" onSubmit={handleSubmit}>
+        <button className="self-end" onClick={() => setIsOpen(true)}>
           <CloseIcon />
         </button>
         <h2 className="mb-4 text-2xl font-medium capitalize">add a review</h2>
-        <input type="text" ref={titleRef} className=" review-form-input mb-3" />
+        <input
+          type="text"
+          name="title"
+          value={titleInput}
+          onChange={(e) => setTitleInput(e.currentTarget.value)}
+          className="review-form-input mb-3"
+        />
         <textarea
-          ref={bodyRef}
+          name="body"
+          value={bodyInput}
+          onChange={(e) => setBodyInput(e.currentTarget.value)}
           className="review-form-input mb-2 h-[50%] resize-none"
         />
         <StarsRating
