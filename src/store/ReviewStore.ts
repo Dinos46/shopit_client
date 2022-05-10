@@ -1,36 +1,47 @@
 import { IReview, IReviewInput } from '../model/review.model'
 import { observable, makeObservable, action, runInAction } from 'mobx'
-import { mutateReview } from '../controlers/item.controler'
+import { deleteReview, mutateReview } from '../controlers/item.controler'
 
 class ReviewStore {
   isLoading: boolean = false
   currReview: IReview | null = null
+  reviews: IReview[] | undefined = []
 
   constructor() {
     makeObservable(this, {
       isLoading: observable,
       currReview: observable,
-      setCurrReview: action,
+      reviews: observable,
+      setReviews: action,
       createReview: action,
       removeReview: action,
       updateReview: action,
     })
   }
 
-  setCurrReview(review: IReview) {
-    this.currReview = review
+  setReviews(reviews: IReview[] | undefined) {
+    this.reviews = reviews
   }
 
   async createReview(input: IReviewInput) {
     try {
-      await mutateReview(input)
+      const res = await mutateReview(input)
+      this.reviews?.push(res.addReview)
     } catch (err) {
       console.log('error from review store, cant create review', err)
     }
   }
+
   async updateReview(input: IReviewInput) {
+    const reviewToUpdate = {
+      body: input.body,
+      title: input.title,
+      rating: input.rating,
+      id: input.id,
+    }
     try {
-      await mutateReview(input)
+      await mutateReview(reviewToUpdate)
+      console.log('STORE', input)
     } catch (err) {
       console.log('error from review store, cant create review', err)
     }
@@ -38,6 +49,8 @@ class ReviewStore {
 
   async removeReview(id: string) {
     try {
+      await deleteReview(id)
+      this.reviews = this.reviews?.filter((review) => id !== review.id)
     } catch (err) {
       console.log('error from review store, cant delete review', err)
     }

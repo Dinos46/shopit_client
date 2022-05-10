@@ -7,8 +7,8 @@ export interface IReview extends IBaseReview {
 }
 
 export interface IReviewInput extends IBaseReview {
-  itemId: string
-  userId: string
+  itemId?: string
+  userId?: string
 }
 
 interface IBaseReview {

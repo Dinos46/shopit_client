@@ -7,9 +7,27 @@ mutation addReview($title:String!,$body:String!,$rating:Int!,$itemId:String!,$us
         itemId:$itemId,
         userId:$userId
     })
+    {
+        id
+        title
+        body
+        createdAt
+        updatedAt
+        rating
+         user{
+            id
+            email
+            username
+            image
+        }
+    }
   }
 `
 
-export const DELETE_REVIEW = ``
+export const DELETE_REVIEW = `
+mutation deleteReview($reviewId:String!){
+  deleteReview(reviewId:$reviewId)
+}
+`
 
 export const UPDATE_REVIEW = ``

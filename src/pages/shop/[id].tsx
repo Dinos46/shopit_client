@@ -9,8 +9,9 @@ import { ItemReview } from '../../components'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
 import HeadInfo from '../../components/HeadInfo'
 import ReviewForm from '../../components/ReviewForm'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useAppContext } from '../../store/context/UserContext'
+import { observer } from 'mobx-react'
 
 type Props = {
   item: IItem
@@ -19,7 +20,8 @@ type Props = {
 const ItemDetails: React.FC<Props> = ({ item }) => {
   const { category, image, price, title, description, reviews } = item
   const [open, setOpen] = useState(false)
-  const { authStore } = useAppContext()
+  const { authStore, reviewStore } = useAppContext()
+
   useStylesChange('')
   useUserAuthStateChange()
 
@@ -29,6 +31,10 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
     },
     [open]
   )
+
+  useEffect(() => {
+    reviewStore.setReviews(reviews)
+  }, [])
 
   return (
     <section className=" px-3 pt-32 text-wh">
@@ -75,7 +81,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
         )}
         {reviews?.length ? (
           <div className="grid items-center gap-5 md:grid-cols-reviews">
-            {reviews.map((review) => (
+            {reviewStore.reviews?.map((review) => (
               <ItemReview review={review} key={review.id} />
             ))}
           </div>
@@ -86,7 +92,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
   )
 }
 
-export default ItemDetails
+export default observer(ItemDetails)
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await queryAllItems()

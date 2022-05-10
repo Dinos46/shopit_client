@@ -4,7 +4,10 @@ import StarsRating from './StarsRating'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useAppContext } from '../store/context/UserContext'
-import { useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
+import { observer } from 'mobx-react'
+import ReviewStore from '../store/ReviewStore'
+import ReviewForm from './ReviewForm'
 
 type Props = {
   review: IReview
@@ -12,19 +15,25 @@ type Props = {
 
 const ItemReview: React.FC<Props> = ({ review }) => {
   const { user } = review
-  const { authStore } = useAppContext()
+  const { authStore, reviewStore } = useAppContext()
+  const [isOpen, setIsOpen] = useState(false)
 
   const isUserOwn = useMemo(
     () => user.id === authStore.user?.id,
     [user, authStore.user]
   )
 
-  const onEdit = async () => {}
+  const onEdit = useCallback(async () => {
+    console.log('click')
+    setIsOpen(true)
+  }, [])
 
-  const onDelete = async () => {}
+  const onDelete = useCallback(async () => {
+    await reviewStore.removeReview(review.id!)
+  }, [])
 
   return (
-    <section className="mt-6 flex items-center justify-between rounded-md text-base text-wh">
+    <section className="review mt-6 flex items-center justify-between rounded-md text-base text-wh">
       <div className="flex">
         <div className="mr-2 flex flex-col items-center justify-center rounded-full ">
           {user.image ? (
@@ -45,7 +54,7 @@ const ItemReview: React.FC<Props> = ({ review }) => {
         </div>
       </div>
       {isUserOwn && (
-        <div>
+        <div className="review-actions">
           <button className="mr-3" onClick={onEdit}>
             <EditIcon />
           </button>
@@ -54,8 +63,13 @@ const ItemReview: React.FC<Props> = ({ review }) => {
           </button>
         </div>
       )}
+      {isOpen && (
+        <div>
+          <ReviewForm setIsOpen={setIsOpen} review={review} />
+        </div>
+      )}
     </section>
   )
 }
 
-export default ItemReview
+export default observer(ItemReview)

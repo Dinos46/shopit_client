@@ -1,6 +1,10 @@
 import axios from 'axios'
 import { GET_ALL_ITEMS, GET_ITEM_BY_ID } from '../graphql/itemQueries'
-import { CREATE_REVIEW, UPDATE_REVIEW } from '../graphql/reviewQueries'
+import {
+  CREATE_REVIEW,
+  DELETE_REVIEW,
+  UPDATE_REVIEW,
+} from '../graphql/reviewQueries'
 import { IFilterBy } from '../model/IFilterBy'
 import { IReviewInput } from '../model/review.model'
 import { auth } from '../services/firebaseService'
@@ -51,13 +55,25 @@ export const queryItemById = async (id: string) => {
 export const mutateReview = async (reviewToAdd: IReviewInput) => {
   await _getFirebaseToken()
   const query = reviewToAdd.id ? UPDATE_REVIEW : CREATE_REVIEW
-  console.log('ADDD', reviewToAdd)
   try {
     const { data } = await axios.post('', {
       query,
       variables: reviewToAdd,
     })
-    return data
+    return reviewToAdd.id ? data.data : data.data.addReview
+  } catch (err) {
+    console.log(`error from controller mutate a review`, err)
+  }
+}
+
+export const deleteReview = async (reviewId: string) => {
+  await _getFirebaseToken()
+
+  try {
+    const { data } = await axios.post('', {
+      query: DELETE_REVIEW,
+      variables: { reviewId },
+    })
   } catch (err) {
     console.log(`error from controller mutate a review`, err)
   }

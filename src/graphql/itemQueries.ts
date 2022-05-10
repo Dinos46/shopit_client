@@ -20,7 +20,7 @@ export const GET_ITEM_BY_ID = `
             title
             category
             description
-                reviews{
+            reviews{
                 id
                 title
                 body

@@ -1,15 +1,17 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { EvForm } from '../model/IFilterBy'
 import StarsRating from './StarsRating'
 import CloseIcon from '@mui/icons-material/Close'
 import { useAppContext } from '../store/context/UserContext'
 import { useRouter } from 'next/router'
+import { IReview } from '../model/review.model'
 
 type Props = {
   setIsOpen: (isOpen: boolean) => void
+  review?: IReview
 }
 
-const ReviewForm: React.FC<Props> = ({ setIsOpen }) => {
+const ReviewForm: React.FC<Props> = ({ setIsOpen, review }) => {
   const route = useRouter()
   const [titleInput, setTitleInput] = useState<string>('')
   const [bodyInput, setBodyInput] = useState<string>('')
@@ -27,18 +29,28 @@ const ReviewForm: React.FC<Props> = ({ setIsOpen }) => {
         userId: authStore.user?.id!,
         itemId,
       }
-      await reviewStore.createReview(reviewToAdd)
+      review
+        ? reviewStore.updateReview(reviewToAdd)
+        : await reviewStore.createReview(reviewToAdd)
       resetForm()
     },
     [rate]
   )
 
-  const resetForm = () => {
+  useEffect(() => {
+    if (review) {
+      setBodyInput(review.body)
+      setRate(review.rating)
+      setTitleInput(review.title)
+    }
+  }, [])
+
+  const resetForm = useCallback(() => {
     setRate(0)
     setTitleInput('')
     setBodyInput('')
     setIsOpen(false)
-  }
+  }, [])
 
   return (
     <div className="review-modal">
