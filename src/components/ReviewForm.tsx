@@ -28,9 +28,10 @@ const ReviewForm: React.FC<Props> = ({ setIsOpen, review }) => {
         rating: rate || 0,
         userId: authStore.user?.id!,
         itemId,
+        id: review ? review.id : '',
       }
       review
-        ? reviewStore.updateReview(reviewToAdd)
+        ? await reviewStore.updateReview(reviewToAdd)
         : await reviewStore.createReview(reviewToAdd)
       resetForm()
     },
@@ -55,7 +56,7 @@ const ReviewForm: React.FC<Props> = ({ setIsOpen, review }) => {
   return (
     <div className="review-modal">
       <form className="review-form" onSubmit={handleSubmit}>
-        <button className="self-end" onClick={() => setIsOpen(true)}>
+        <button className="self-end" onClick={() => setIsOpen(false)}>
           <CloseIcon />
         </button>
         <h2 className="mb-4 text-2xl font-medium capitalize">add a review</h2>

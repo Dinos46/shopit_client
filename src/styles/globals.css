@@ -84,13 +84,7 @@ body.header-bg header {
   @apply absolute inset-0 z-50 flex h-full w-full items-center justify-center bg-black/60 backdrop-blur-sm;
 }
 
-.review {
-  position: relative;
-}
-
 .review-actions {
-  position: absolute;
-  right: 0;
   opacity: 0;
   pointer-events: none;
   transition: ease-in-out 0.35s;

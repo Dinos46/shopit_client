@@ -30,4 +30,27 @@ mutation deleteReview($reviewId:String!){
 }
 `
 
-export const UPDATE_REVIEW = ``
+export const UPDATE_REVIEW = `
+mutation editReview($title:String!,$body:String!,$rating:Int!,$id:ID!){
+  editReview(reviewInput:{
+      title:$title,
+      body:$body,
+      rating:$rating,
+      id:$id
+  })
+  {
+      id
+      title
+      body
+      createdAt
+      updatedAt
+      rating
+       user{
+          id
+          email
+          username
+          image
+      }
+  }
+}
+`

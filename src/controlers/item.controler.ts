@@ -60,7 +60,7 @@ export const mutateReview = async (reviewToAdd: IReviewInput) => {
       query,
       variables: reviewToAdd,
     })
-    return reviewToAdd.id ? data.data : data.data.addReview
+    return reviewToAdd.id ? data.data.editReview : data.data.addReview
   } catch (err) {
     console.log(`error from controller mutate a review`, err)
   }

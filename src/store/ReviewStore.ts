@@ -5,7 +5,7 @@ import { deleteReview, mutateReview } from '../controlers/item.controler'
 class ReviewStore {
   isLoading: boolean = false
   currReview: IReview | null = null
-  reviews: IReview[] | undefined = []
+  reviews: IReview[] = []
 
   constructor() {
     makeObservable(this, {
@@ -19,14 +19,21 @@ class ReviewStore {
     })
   }
 
-  setReviews(reviews: IReview[] | undefined) {
+  setReviews(reviews: IReview[]) {
     this.reviews = reviews
   }
 
   async createReview(input: IReviewInput) {
+    const reviewToUAdd = {
+      body: input.body,
+      title: input.title,
+      rating: input.rating,
+      userId: input.userId,
+      itemId: input.itemId,
+    }
     try {
-      const res = await mutateReview(input)
-      this.reviews?.push(res.addReview)
+      const res = await mutateReview(reviewToUAdd)
+      this.reviews?.push(res)
     } catch (err) {
       console.log('error from review store, cant create review', err)
     }
@@ -40,8 +47,9 @@ class ReviewStore {
       id: input.id,
     }
     try {
-      await mutateReview(reviewToUpdate)
-      console.log('STORE', input)
+      const res = await mutateReview(reviewToUpdate)
+      const idx = this.reviews?.findIndex((rev) => res.id === rev.id)
+      this.reviews[idx] = res
     } catch (err) {
       console.log('error from review store, cant create review', err)
     }
