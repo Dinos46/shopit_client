@@ -8,7 +8,7 @@ import { ADD_User, GET_LOGEDIN_USER, GET_USER } from '../graphql/userQueries'
 import { auth } from '../services/firebaseService'
 import { IUser } from '../model/user.model'
 
-const _getFirebaseToken = async () => {
+export const getFirebaseToken = async () => {
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
   const token = await auth.currentUser?.getIdToken()
@@ -24,7 +24,7 @@ export const register = async (
   password: string,
   username: string
 ) => {
-  await _getFirebaseToken()
+  await getFirebaseToken()
   try {
     console.log('CREDS', email, password)
     const res = await createUserWithEmailAndPassword(auth, email, password)
@@ -53,7 +53,7 @@ export const register = async (
 export const logIn = async (email: string, password: string) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password)
-    await _getFirebaseToken()
+    await getFirebaseToken()
     const queryData = {
       query: GET_USER,
       variables: {
@@ -82,7 +82,7 @@ export const logOut = async () => {
 }
 
 export const getLogedInUser = async (email: string) => {
-  _getFirebaseToken()
+  getFirebaseToken()
   try {
     const queryData = {
       query: GET_LOGEDIN_USER,

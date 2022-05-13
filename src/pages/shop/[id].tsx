@@ -3,8 +3,6 @@ import { queryAllItems, queryItemById } from '../../controlers/item.controler'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useStylesChange } from '../../hooks/useStylesChange'
 import Image from 'next/image'
-import RemoveIcon from '@mui/icons-material/Remove'
-import AddIcon from '@mui/icons-material/Add'
 import { ItemReview } from '../../components'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
 import HeadInfo from '../../components/HeadInfo'
@@ -12,6 +10,8 @@ import ReviewForm from '../../components/ReviewForm'
 import { useCallback, useEffect, useState } from 'react'
 import { useAppContext } from '../../store/context/UserContext'
 import { observer } from 'mobx-react'
+import { ICartItem } from '../../model/user.model'
+import { toJS } from 'mobx'
 
 type Props = {
   item: IItem
@@ -20,7 +20,8 @@ type Props = {
 const ItemDetails: React.FC<Props> = ({ item }) => {
   const { category, image, price, title, description, reviews } = item
   const [open, setOpen] = useState(false)
-  const { authStore, reviewStore } = useAppContext()
+  const [cart, setCart] = useState<ICartItem[]>([])
+  const { authStore, reviewStore, userCartStore } = useAppContext()
 
   useStylesChange('')
   useUserAuthStateChange()
@@ -32,12 +33,19 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
     [open]
   )
 
+  const handleCartChange = (name: string) => {
+    name === 'add'
+      ? userCartStore.addToCart(item)
+      : userCartStore.removeFromCart(item.id!)
+  }
+
   useEffect(() => {
-    reviewStore.setReviews(reviews)
+    if (reviews) reviewStore.setReviews(reviews)
   }, [])
 
   return (
     <section className=" px-3 pt-32 text-wh">
+      {JSON.stringify(toJS(userCartStore.cart), null, 2)}
       <HeadInfo des={'details page for each otem'} title={'item-page'} />
       <div className="flex flex-row">
         <div className="mr-4 flex-1 rounded-md bg-white p-1 ">
@@ -54,22 +62,26 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
           <h2 className="mb-3 text-3xl text-white">{title}</h2>
           <h3 className="mb-3 text-2xl opacity-90">category: {category}</h3>
           <p className="mb-3 text-lg  leading-7 opacity-90">{description}</p>
-          <div className="flex  justify-center">
-            <button className="self-center">
-              <AddIcon />
-            </button>
-            <p className="mx-3 text-right text-2xl text-purple-200">{price}$</p>
-            <button className="self-center">
-              <RemoveIcon />
-            </button>
-          </div>
+          <p className="mx-3 self-center text-2xl text-purple-200">{price}$</p>
+          <button
+            className="btn hover my-4"
+            onClick={() => handleCartChange('add')}
+          >
+            add to cart
+          </button>
+          <button
+            className="btn hover"
+            onClick={() => handleCartChange('remove')}
+          >
+            remove from cart
+          </button>
           <p className="flex-1"></p>
         </div>
       </div>
       <div className="mt-8 flex flex-col">
         {authStore.user ? (
           <button
-            className="btn border-wl self-center bg-transparent p-2 text-wh hover:border-bl hover:text-pink-200"
+            className="btn border-wl hover self-center bg-transparent p-2 text-wh"
             onClick={() => setIsOpen(true)}
           >
             add a comment

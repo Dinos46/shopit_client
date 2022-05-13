@@ -32,16 +32,18 @@ class AuthStore {
       })
     } catch (err) {
       runInAction(() => {
+        console.log(`error from create user auth store`, err)
         this.isLoading = false
       })
-      console.log(`error from create user auth store ${err}`)
     }
   }
 
   async logOutUser() {
     try {
       await logOut()
-      this.user = null
+      runInAction(() => {
+        this.user = null
+      })
     } catch (err) {
       console.log(`error from logout auth store ${err}`)
     }
@@ -57,23 +59,25 @@ class AuthStore {
       })
     } catch (err) {
       runInAction(() => {
+        console.log(`error from login auth store`, err)
         this.isLoading = false
       })
-      console.log(`error from login auth store ${err}`)
     }
   }
 
   async getUserData(email: string) {
+    this.isLoading = true
     try {
       const user = await getLogedInUser(email)
       runInAction(() => {
+        this.isLoading = false
         if (user) {
           this.user = user
         }
-        // console.log('LOGEDIN USER', user)
       })
     } catch (err) {
-      console.log(`error from loged in user auth store ${err}`)
+      console.log(`error from loged in user auth store `, err)
+      this.isLoading = false
     }
   }
 }

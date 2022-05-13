@@ -4,14 +4,20 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useAppContext } from '../../store/context/UserContext'
 import UserMenu from './UserMenu'
+import Badge from '@mui/material/Badge'
+import { observer } from 'mobx-react'
 
 const Header = () => {
-  const { authStore } = useAppContext()
+  const { authStore, userCartStore } = useAppContext()
   const router = useRouter()
   const [open, setOpen] = useState(false)
+
+  // useEffect(() => {
+  //   userCartStore.setCart(authStore.user.cart)
+  // }, [])
 
   const handleClickAway = useCallback(() => {
     setOpen(false)
@@ -67,11 +73,15 @@ const Header = () => {
               </div>
             </div>
           </ClickAwayListener>
-          <ShoppingCartIcon className="ml-5" />
+          <Link href={'/cart'}>
+            <Badge badgeContent={userCartStore.cartCount} color="primary">
+              <ShoppingCartIcon className="ml-5" />
+            </Badge>
+          </Link>
         </div>
       </nav>
     </header>
   )
 }
 
-export default Header
+export default observer(Header)

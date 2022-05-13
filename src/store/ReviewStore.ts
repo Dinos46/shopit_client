@@ -32,10 +32,17 @@ class ReviewStore {
       itemId: input.itemId,
     }
     try {
+      this.isLoading = true
       const res = await mutateReview(reviewToUAdd)
-      this.reviews?.push(res)
+      runInAction(() => {
+        this.reviews?.push(res)
+        this.isLoading = false
+      })
     } catch (err) {
-      console.log('error from review store, cant create review', err)
+      runInAction(() => {
+        this.isLoading = false
+        console.log('error from review store, cant create review', err)
+      })
     }
   }
 
@@ -47,20 +54,34 @@ class ReviewStore {
       id: input.id,
     }
     try {
+      this.isLoading = true
       const res = await mutateReview(reviewToUpdate)
-      const idx = this.reviews?.findIndex((rev) => res.id === rev.id)
-      this.reviews[idx] = res
+      runInAction(() => {
+        this.isLoading = false
+        const idx = this.reviews?.findIndex((rev) => res.id === rev.id)
+        this.reviews[idx] = res
+      })
     } catch (err) {
-      console.log('error from review store, cant create review', err)
+      runInAction(() => {
+        this.isLoading = false
+        console.log('error from review store, cant create review', err)
+      })
     }
   }
 
   async removeReview(id: string) {
     try {
+      this.isLoading = true
       await deleteReview(id)
-      this.reviews = this.reviews?.filter((review) => id !== review.id)
+      runInAction(() => {
+        this.reviews = this.reviews?.filter((review) => id !== review.id)
+        this.isLoading = false
+      })
     } catch (err) {
-      console.log('error from review store, cant delete review', err)
+      runInAction(() => {
+        this.isLoading = false
+        console.log('error from review store, cant delete review', err)
+      })
     }
   }
 }

@@ -17,6 +17,10 @@ body {
   @apply cursor-pointer rounded-md border-[3px] p-2 font-pop capitalize  transition duration-300 ease-linear;
 }
 
+.hover {
+  @apply hover:border-bl hover:text-pink-200;
+}
+
 .form-input {
   @apply mb-3 rounded-md border-none bg-slate-50 p-2 font-pop text-bl outline-none;
 }

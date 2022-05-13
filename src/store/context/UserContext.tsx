@@ -10,8 +10,7 @@ const RootContextProvider = ({ children }: { children: ReactNode }) => {
 }
 
 export const useAppContext = () => {
-  const { authStore, itemStore, reviewStore } = useContext(RootContext)
-  return { authStore, itemStore, reviewStore }
+  return useContext(RootContext)
 }
 
 export default RootContextProvider

@@ -8,7 +8,7 @@ const Layout: React.FC<ReactNode> = ({ children }) => {
     <div className=" h-full">
       <Header />
       <ScrollTop />
-      <main className="m-auto h-full max-w-6xl">{children}</main>
+      <main className="m-auto min-h-[100vh] max-w-6xl">{children}</main>
       <Footer />
     </div>
   )

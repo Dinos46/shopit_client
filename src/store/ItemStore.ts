@@ -27,8 +27,8 @@ class ItemStore {
     } catch (err) {
       runInAction(() => {
         this.isLoading = false
+        console.log('error from item store cannot filter', err)
       })
-      console.log('error from item store cannot filter', err)
     }
   }
 
