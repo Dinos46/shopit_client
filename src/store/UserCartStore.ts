@@ -13,11 +13,16 @@ class UserCartStore {
       removeFromCart: action,
       addToCart: action,
       setCart: action,
+      getItemTotalPrice: action,
     })
   }
 
   get cartCount() {
     return this.cart.length
+  }
+
+  getItemTotalPrice({ item, qty }: ICartItem) {
+    return item.price * qty
   }
 
   addToCart(itemToAdd: IItem) {
@@ -43,7 +48,9 @@ class UserCartStore {
   }
 
   get cartValue() {
-    return
+    return this.cart.reduce((acc, { item, qty }) => {
+      return (acc += item.price * qty)
+    }, 0)
   }
 
   setCart(cart: ICartItem[]) {

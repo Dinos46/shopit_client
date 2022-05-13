@@ -15,7 +15,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(270px, 1fr))',
-        reviews: 'repeat(2, 1fr)',
+        'cart-grid': '1fr 3fr 1fr 1fr',
       },
     },
   },

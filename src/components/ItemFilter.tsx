@@ -16,6 +16,7 @@ const ItemFilter: React.FC<Props> = ({
   const { name, maxPrice, minPrice } = filter
 
   const [options] = useState([
+    '',
     `women's clothing`,
     `jewelery`,
     `electronics`,
@@ -41,7 +42,7 @@ const ItemFilter: React.FC<Props> = ({
             name="ctg"
           >
             {options.map((opt) => (
-              <option value={opt} key={opt}>
+              <option selected={!opt} value={opt} key={opt}>
                 {opt}
               </option>
             ))}

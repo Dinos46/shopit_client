@@ -10,8 +10,8 @@ import ReviewForm from '../../components/ReviewForm'
 import { useCallback, useEffect, useState } from 'react'
 import { useAppContext } from '../../store/context/UserContext'
 import { observer } from 'mobx-react'
-import { ICartItem } from '../../model/user.model'
-import { toJS } from 'mobx'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { useRouter } from 'next/router'
 
 type Props = {
   item: IItem
@@ -20,9 +20,8 @@ type Props = {
 const ItemDetails: React.FC<Props> = ({ item }) => {
   const { category, image, price, title, description, reviews } = item
   const [open, setOpen] = useState(false)
-  const [cart, setCart] = useState<ICartItem[]>([])
   const { authStore, reviewStore, userCartStore } = useAppContext()
-
+  const router = useRouter()
   useStylesChange('')
   useUserAuthStateChange()
 
@@ -33,11 +32,11 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
     [open]
   )
 
-  const handleCartChange = (name: string) => {
+  const handleCartChange = useCallback((name: string) => {
     name === 'add'
       ? userCartStore.addToCart(item)
       : userCartStore.removeFromCart(item.id!)
-  }
+  }, [])
 
   useEffect(() => {
     if (reviews) reviewStore.setReviews(reviews)
@@ -45,8 +44,13 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
 
   return (
     <section className=" px-3 pt-32 text-wh">
-      {JSON.stringify(toJS(userCartStore.cart), null, 2)}
       <HeadInfo des={'details page for each otem'} title={'item-page'} />
+      <button
+        className="mb-4 rounded-full bg-wh p-1 text-bl hover:opacity-90"
+        onClick={() => router.back()}
+      >
+        <ArrowBackIcon />
+      </button>
       <div className="flex flex-row">
         <div className="mr-4 flex-1 rounded-md bg-white p-1 ">
           <Image
@@ -92,7 +96,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
           </h2>
         )}
         {reviews?.length ? (
-          <div className="grid items-center gap-5 md:grid-cols-reviews">
+          <div className="md:grid-cols-reviews grid items-center gap-5">
             {reviewStore.reviews?.map((review) => (
               <ItemReview review={review} key={review.id} />
             ))}
