@@ -4,7 +4,7 @@ import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
 
 const about = () => {
   useStylesChange('')
-  useUserAuthStateChange()
+  // useUserAuthStateChange()
 
   return (
     <div>

@@ -9,11 +9,11 @@ export const useUserAuthStateChange = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user?.email) {
         console.log('USER')
-        await authStore.getUserData(user?.email)
+        // await authStore.logInUser(user?.email)
       }
       if (!user) {
         console.log('NO_USER')
-        authStore.user = null
+        authStore.user = undefined
       }
     })
     return unsubscribe

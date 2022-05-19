@@ -18,28 +18,31 @@ query Items($ctg:String,$minPrice:Int,$maxPrice:Int,$name:String){
 `
 
 export const GET_ITEM_BY_ID = `
-    query getItemsById($id:ID!){
-        item(id:$id){
+query getItemsById($id:ID!){
+    item(id:$id){
+      error{
+        message
+      }
+      status
+      data{
+        id
+        image
+        price
+        title
+        category
+        description
+        reviews{
+          id
+          title
+          body
+          createdAt
+          user{
             id
+            username
             image
-            price
-            title
-            category
-            description
-            reviews{
-                id
-                title
-                body
-                createdAt
-                updatedAt
-                rating
-                 user{
-                    id
-                    email
-                    username
-                    image
-                }
-            }
+          }
         }
+      }
     }
+  }
 `

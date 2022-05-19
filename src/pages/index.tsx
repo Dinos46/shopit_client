@@ -5,7 +5,7 @@ import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
 
 const Home = () => {
   useStylesChange('header')
-  useUserAuthStateChange()
+  // useUserAuthStateChange()
   return (
     <div className="h-full">
       <HeadInfo des={'home page for ShopIt online fake store'} title={'Home'} />

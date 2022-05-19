@@ -19,7 +19,7 @@ const shop: React.FC<Props> = ({ items }) => {
   const { itemStore } = useAppContext()
 
   useStylesChange('')
-  useUserAuthStateChange()
+  // useUserAuthStateChange()
 
   useEffect(() => {
     itemStore.setItems(items)

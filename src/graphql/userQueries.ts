@@ -1,30 +1,47 @@
-export const ADD_User = `
+export const ADD_USER = `
   mutation($email:String!,$username:String!,$image:String!){
     addUser(userInput:{email:$email,username:$username,image:$image}){
-      id
-      email
-      username
-      image
+      error{
+        message
+      }
+      status
+      data{
+        id
+        email
+        username
+        image
+        role
+        cart{
+          id
+          quantity
+          itemId
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
-  `
+`
 
 export const GET_USER = `
-  query($email:String!){
-    getUser(email:$email){
+query($email:String!){
+  getUser(email:$email){
+    error{
+      message
+    }
+    status
+    data{
       id
       email
       username
       image
+      role
+      cart{
+        id
+        quantity
+        itemId
+      }
     }
-  }`
-
-export const GET_LOGEDIN_USER = `
-  query($email:String!){
-  getLogedInUser(email:$email){
-    id
-    email
-    username
-    image
   }
-}`
+}
+`

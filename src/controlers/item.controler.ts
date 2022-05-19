@@ -8,18 +8,18 @@ import {
 import { IFilterBy } from '../model/filterBy.model'
 import { IHttpRes } from '../model/httpRes.model'
 import { IReviewInput } from '../model/review.model'
-import { auth } from '../services/firebaseService'
+import { auth, getFirebaseToken } from '../services/firebaseService'
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
-const _getFirebaseToken = async () => {
-  const token = await auth.currentUser?.getIdToken()
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    return token
-  }
-  return null
-}
+// const _getFirebaseToken = async () => {
+//   const token = await auth.currentUser?.getIdToken()
+//   if (token) {
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+//     return token
+//   }
+//   return null
+// }
 
 export const queryAllItems = async (filter?: IFilterBy) => {
   const filterBy = {
@@ -33,6 +33,7 @@ export const queryAllItems = async (filter?: IFilterBy) => {
       query: GET_ALL_ITEMS,
       variables: filterBy,
     })
+
     if (data) {
       return data
     }
@@ -43,20 +44,23 @@ export const queryAllItems = async (filter?: IFilterBy) => {
 
 export const queryItemById = async (id: string) => {
   try {
-    const { data } = await axios.post('', {
+    const { data } = await axios.post<IHttpRes>('', {
       query: GET_ITEM_BY_ID,
       variables: {
         id,
       },
     })
-    return data.data
+
+    if (data) {
+      return data
+    }
   } catch (err) {
     console.log(`error from controller get item by id`, err)
   }
 }
 
 export const mutateReview = async (reviewToAdd: IReviewInput) => {
-  await _getFirebaseToken()
+  await getFirebaseToken()
   const query = reviewToAdd.id ? UPDATE_REVIEW : CREATE_REVIEW
   try {
     const { data } = await axios.post('', {
@@ -70,7 +74,7 @@ export const mutateReview = async (reviewToAdd: IReviewInput) => {
 }
 
 export const deleteReview = async (reviewId: string) => {
-  await _getFirebaseToken()
+  await getFirebaseToken()
 
   try {
     const { data } = await axios.post('', {

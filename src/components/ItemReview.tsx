@@ -6,7 +6,6 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import { useAppContext } from '../store/context/UserContext'
 import { useCallback, useMemo, useState } from 'react'
 import { observer } from 'mobx-react'
-import ReviewStore from '../store/ReviewStore'
 import ReviewForm from './ReviewForm'
 
 type Props = {
@@ -24,7 +23,6 @@ const ItemReview: React.FC<Props> = ({ review }) => {
   )
 
   const onEdit = useCallback(async () => {
-    console.log('click')
     setIsOpen(true)
   }, [])
 

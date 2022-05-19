@@ -23,7 +23,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
   const { authStore, reviewStore, userCartStore } = useAppContext()
   const router = useRouter()
   useStylesChange('')
-  useUserAuthStateChange()
+  // useUserAuthStateChange()
 
   const setIsOpen = useCallback(
     (isOpen: boolean) => {
@@ -113,12 +113,12 @@ export default observer(ItemDetails)
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await queryAllItems()
 
-  const paths = data?.items.map((item: IItem) => ({
-    params: { id: item.id + '' },
+  const paths = data?.data.items?.data.map((item) => ({
+    params: { id: `${item.id}` },
   }))
 
   return {
-    paths,
+    paths: paths ?? [],
     fallback: false,
   }
 }
@@ -129,7 +129,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      item: data?.item,
+      item: data?.data.item?.data,
     },
   }
 }

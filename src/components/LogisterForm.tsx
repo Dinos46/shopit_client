@@ -23,7 +23,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   const { email, username, password } = creds
 
   useStylesChange('')
-  useUserAuthStateChange()
+  // useUserAuthStateChange()
 
   const handleChange = useCallback(
     (ev: EvInput) => {

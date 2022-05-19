@@ -1,5 +1,6 @@
 import { IItem } from './item.model'
 import { IReview } from './review.model'
+import { IUser } from './user.model'
 
 interface IHttpData<T> {
   data: T
@@ -13,7 +14,7 @@ type ItemsRes = IHttpData<IItem[]>
 type ItemRes = IHttpData<IItem>
 type ReviewRes = IHttpData<IReview>
 type ReviewResDel = IHttpData<string>
-type UserRes = IHttpData<string>
+type UserRes = IHttpData<IUser>
 
 export interface IHttpRes {
   data: {
