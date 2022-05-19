@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { EvForm } from '../model/IFilterBy'
+import { EvForm } from '../model/filterBy.model'
 import StarsRating from './StarsRating'
 import CloseIcon from '@mui/icons-material/Close'
 import { useAppContext } from '../store/context/UserContext'

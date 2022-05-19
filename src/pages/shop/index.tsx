@@ -6,7 +6,7 @@ import HeadInfo from '../../components/HeadInfo'
 import { queryAllItems } from '../../controlers/item.controler'
 import { useStylesChange } from '../../hooks/useStylesChange'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
-import { EvForm, EvInput } from '../../model/IFilterBy'
+import { EvForm, EvInput } from '../../model/filterBy.model'
 import { IItem } from '../../model/item.model'
 import { useAppContext } from '../../store/context/UserContext'
 import { rootStore } from '../../store/RootStore'
@@ -82,7 +82,9 @@ export default observer(shop)
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await queryAllItems()
   const { itemStore } = rootStore
-  itemStore.setItems(data?.items)
+  if (data?.data?.items) {
+    itemStore.setItems(data?.data?.items?.data)
+  }
   return {
     props: {
       items: itemStore.items,

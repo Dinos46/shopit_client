@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EvForm, EvInput, IFilterBy } from '../model/IFilterBy'
+import { EvForm, EvInput, IFilterBy } from '../model/filterBy.model'
 import FormInput from './FormInput'
 
 type Props = {
@@ -40,9 +40,10 @@ const ItemFilter: React.FC<Props> = ({
             className="rounded-md bg-gray-200 p-1 font-pop text-bl outline-none"
             onChange={handleChange}
             name="ctg"
+            defaultValue={''}
           >
             {options.map((opt) => (
-              <option selected={!opt} value={opt} key={opt}>
+              <option value={opt} key={opt}>
                 {opt}
               </option>
             ))}

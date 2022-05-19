@@ -5,7 +5,8 @@ import {
   DELETE_REVIEW,
   UPDATE_REVIEW,
 } from '../graphql/reviewQueries'
-import { IFilterBy } from '../model/IFilterBy'
+import { IFilterBy } from '../model/filterBy.model'
+import { IHttpRes } from '../model/httpRes.model'
 import { IReviewInput } from '../model/review.model'
 import { auth } from '../services/firebaseService'
 
@@ -20,7 +21,7 @@ const _getFirebaseToken = async () => {
   return null
 }
 
-export const queryAllItems = async (filter?: IFilterBy): Promise<any> => {
+export const queryAllItems = async (filter?: IFilterBy) => {
   const filterBy = {
     ctg: filter?.ctg || '',
     name: filter?.name || '',
@@ -28,11 +29,13 @@ export const queryAllItems = async (filter?: IFilterBy): Promise<any> => {
     minPrice: filter?.minPrice || undefined,
   }
   try {
-    const { data } = await axios.post('', {
+    const { data } = await axios.post<IHttpRes>('', {
       query: GET_ALL_ITEMS,
       variables: filterBy,
     })
-    return data?.data
+    if (data) {
+      return data
+    }
   } catch (err) {
     console.log(`error from controller get all items`, err)
   }

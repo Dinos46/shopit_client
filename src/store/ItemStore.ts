@@ -1,6 +1,6 @@
 import { IItem } from '../model/item.model'
 import { observable, makeObservable, action, runInAction } from 'mobx'
-import { IFilterBy } from '../model/IFilterBy'
+import { IFilterBy } from '../model/filterBy.model'
 import { queryAllItems } from '../controlers/item.controler'
 
 class ItemStore {

@@ -6,7 +6,7 @@ import { observer } from 'mobx-react'
 import { useRouter } from 'next/router'
 import { useStylesChange } from '../hooks/useStylesChange'
 import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
-import { EvInput, EvForm } from '../model/IFilterBy'
+import { EvInput, EvForm } from '../model/filterBy.model'
 type Props = {
   state: string
 }

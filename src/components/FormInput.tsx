@@ -1,5 +1,5 @@
 import React from 'react'
-import { EvInput } from '../model/IFilterBy'
+import { EvInput } from '../model/filterBy.model'
 
 type Props = {
   type: string
