@@ -23,7 +23,7 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
   const { authStore, reviewStore, userCartStore } = useAppContext()
   const router = useRouter()
   useStylesChange('')
-  // useUserAuthStateChange()
+  useUserAuthStateChange()
 
   const setIsOpen = useCallback(
     (isOpen: boolean) => {

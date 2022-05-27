@@ -7,6 +7,7 @@ axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
 const _getFirebaseToken = async () => {
   const token = await auth.currentUser?.getIdToken()
   if (token) {
+    console.log(token)
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     return token
   }

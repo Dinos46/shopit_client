@@ -23,7 +23,7 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   const { email, username, password } = creds
 
   useStylesChange('')
-  // useUserAuthStateChange()
+  useUserAuthStateChange()
 
   const handleChange = useCallback(
     (ev: EvInput) => {
@@ -33,7 +33,6 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
         ...prevCreds,
         [name]: value,
       }))
-      console.debug('HANDLE', email, password, username)
     },
     [creds]
   )
@@ -41,7 +40,6 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
   const handleSubmit = useCallback(
     async (ev: EvForm) => {
       ev.preventDefault()
-      console.debug('FORM', email, password, username)
       if (!email && !password) return
       pathname === '/register'
         ? authStore.createUser(email, password, username)

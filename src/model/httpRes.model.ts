@@ -20,8 +20,8 @@ export interface IHttpRes {
   data: {
     items?: ItemsRes
     item?: ItemRes
-    addUser?: UserRes
-    getUser?: UserRes
+    register?: UserRes
+    logIn?: UserRes
     getLogedInUser?: UserRes
     addReview?: ReviewRes
     editReview?: ReviewRes

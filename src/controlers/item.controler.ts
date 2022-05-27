@@ -8,7 +8,6 @@ import {
 import { IFilterBy } from '../model/filterBy.model'
 import { IHttpRes } from '../model/httpRes.model'
 import { IReviewInput } from '../model/review.model'
-import { auth, getFirebaseToken } from '../services/firebaseService'
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -60,7 +59,7 @@ export const queryItemById = async (id: string) => {
 }
 
 export const mutateReview = async (reviewToAdd: IReviewInput) => {
-  await getFirebaseToken()
+  // await getFirebaseToken()
   const query = reviewToAdd.id ? UPDATE_REVIEW : CREATE_REVIEW
   try {
     const { data } = await axios.post('', {
@@ -74,7 +73,7 @@ export const mutateReview = async (reviewToAdd: IReviewInput) => {
 }
 
 export const deleteReview = async (reviewId: string) => {
-  await getFirebaseToken()
+  // await getFirebaseToken()
 
   try {
     const { data } = await axios.post('', {

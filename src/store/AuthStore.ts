@@ -13,6 +13,7 @@ class AuthStore {
       createUser: action,
       logOutUser: action,
       logInUser: action,
+      setUser: action,
     })
   }
 
@@ -57,6 +58,10 @@ class AuthStore {
         this.isLoading = false
       })
     }
+  }
+
+  setUser(user: IUser | undefined) {
+    this.user = user
   }
 }
 

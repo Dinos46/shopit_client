@@ -3,7 +3,7 @@ import React from 'react'
 import { IUser } from '../../model/user.model'
 
 type Props = {
-  user: IUser | null
+  user: IUser | null | undefined
   onLogOut: () => void
 }
 
@@ -16,7 +16,7 @@ const UserMenu: React.FC<Props> = ({ onLogOut, user }) => {
             <button onClick={onLogOut}>logout</button>
           </li>
           <li>
-            <Link href="#">dashboard</Link>
+            <Link href="/dashboard">dashboard</Link>
           </li>
         </ul>
       ) : (

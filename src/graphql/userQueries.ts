@@ -1,6 +1,6 @@
 export const ADD_USER = `
   mutation($email:String!,$username:String!,$image:String!){
-    addUser(userInput:{email:$email,username:$username,image:$image}){
+    register(userInput:{email:$email,username:$username,image:$image}){
       error{
         message
       }
@@ -25,7 +25,7 @@ export const ADD_USER = `
 
 export const GET_USER = `
 query($email:String!){
-  getUser(email:$email){
+  logIn(email:$email){
     error{
       message
     }
@@ -44,4 +44,29 @@ query($email:String!){
     }
   }
 }
+`
+
+export const LOGEDIN_USER = `
+  query($email:String!){
+    getLogedInUser(email:$email){
+      error{
+        message
+      }
+      status
+      data{
+        id
+        email
+        username
+        image
+        role
+        cart{
+          id
+          quantity
+          itemId
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
 `
