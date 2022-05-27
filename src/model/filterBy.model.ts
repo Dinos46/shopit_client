@@ -1,4 +1,4 @@
-import { FormEvent } from 'react'
+import { FormEvent, MouseEventHandler } from 'react'
 
 export interface IFilterBy {
   name: string
@@ -11,3 +11,5 @@ export type EvInput = FormEvent<
   HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 >
 export type EvForm = FormEvent<HTMLFormElement>
+
+export type clickEv = MouseEventHandler<HTMLButtonElement>

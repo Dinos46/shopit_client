@@ -16,13 +16,16 @@ class ItemStore {
     })
   }
 
-  async getFilteredItems(filter: IFilterBy) {
+  async getFilteredItems(filter?: IFilterBy) {
     this.isLoading = true
     try {
-      const { items } = await queryAllItems(filter)
+      const items = await queryAllItems(filter)
+      console.log(items)
       runInAction(() => {
-        this.setItems(items)
-        this.isLoading = false
+        if (items) {
+          this.setItems(items)
+          this.isLoading = false
+        }
       })
     } catch (err) {
       runInAction(() => {

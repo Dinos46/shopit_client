@@ -6,19 +6,8 @@ import {
   UPDATE_REVIEW,
 } from '../graphql/reviewQueries'
 import { IFilterBy } from '../model/filterBy.model'
-import { IHttpRes } from '../model/httpRes.model'
 import { IReviewInput } from '../model/review.model'
-
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
-
-// const _getFirebaseToken = async () => {
-//   const token = await auth.currentUser?.getIdToken()
-//   if (token) {
-//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-//     return token
-//   }
-//   return null
-// }
+import { httpReq } from '../services/httpService'
 
 export const queryAllItems = async (filter?: IFilterBy) => {
   const filterBy = {
@@ -28,13 +17,9 @@ export const queryAllItems = async (filter?: IFilterBy) => {
     minPrice: filter?.minPrice || undefined,
   }
   try {
-    const { data } = await axios.post<IHttpRes>('', {
-      query: GET_ALL_ITEMS,
-      variables: filterBy,
-    })
-
+    const { data } = await httpReq(GET_ALL_ITEMS, filterBy)
     if (data) {
-      return data
+      return data.data.items?.data
     }
   } catch (err) {
     console.log(`error from controller get all items`, err)
@@ -43,15 +28,16 @@ export const queryAllItems = async (filter?: IFilterBy) => {
 
 export const queryItemById = async (id: string) => {
   try {
-    const { data } = await axios.post<IHttpRes>('', {
-      query: GET_ITEM_BY_ID,
-      variables: {
-        id,
-      },
-    })
-
+    // const { data } = await axios.post<IHttpRes>('', {
+    //   query: GET_ITEM_BY_ID,
+    //   variables: {
+    //     id,
+    //   },
+    // })
+    const { data } = await httpReq(GET_ITEM_BY_ID, { id })
     if (data) {
-      return data
+      console.log('ITEM', data.data.item?.data)
+      return data.data.item?.data
     }
   } catch (err) {
     console.log(`error from controller get item by id`, err)
@@ -62,11 +48,15 @@ export const mutateReview = async (reviewToAdd: IReviewInput) => {
   // await getFirebaseToken()
   const query = reviewToAdd.id ? UPDATE_REVIEW : CREATE_REVIEW
   try {
-    const { data } = await axios.post('', {
-      query,
-      variables: reviewToAdd,
-    })
-    return reviewToAdd.id ? data.data.editReview : data.data.addReview
+    // const { data } = await axios.post('', {
+    //   query,
+    //   variables: reviewToAdd,
+    // })
+    const { data } = await httpReq(query, reviewToAdd)
+    console.log('REVIEW', data.data.addReview?.data)
+    return reviewToAdd.id
+      ? data.data.editReview?.data
+      : data.data.addReview?.data
   } catch (err) {
     console.log(`error from controller mutate a review`, err)
   }
@@ -76,10 +66,11 @@ export const deleteReview = async (reviewId: string) => {
   // await getFirebaseToken()
 
   try {
-    const { data } = await axios.post('', {
-      query: DELETE_REVIEW,
-      variables: { reviewId },
-    })
+    // const { data } = await axios.post('', {
+    //   query: DELETE_REVIEW,
+    //   variables: { reviewId },
+    // })
+    await httpReq(DELETE_REVIEW, { reviewId })
   } catch (err) {
     console.log(`error from controller mutate a review`, err)
   }

@@ -10,9 +10,8 @@ export const useUserAuthStateChange = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user?.email) {
         const dbUser = await getLogedInUser(user.email)
+        authStore.user = dbUser
         console.log('USER', dbUser)
-
-        authStore.setUser(dbUser)
       }
       if (!user) {
         console.log('NO_USER')

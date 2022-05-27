@@ -7,12 +7,14 @@ import { useAppContext } from '../store/context/UserContext'
 import { useCallback, useMemo, useState } from 'react'
 import { observer } from 'mobx-react'
 import ReviewForm from './ReviewForm'
+import { toJS } from 'mobx'
 
 type Props = {
   review: IReview
 }
 
 const ItemReview: React.FC<Props> = ({ review }) => {
+  // console.log(toJS(review))
   const { user } = review
   const { authStore, reviewStore } = useAppContext()
   const [isOpen, setIsOpen] = useState(false)

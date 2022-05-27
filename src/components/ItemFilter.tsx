@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { EvForm, EvInput, IFilterBy } from '../model/filterBy.model'
+import { clickEv, EvForm, EvInput, IFilterBy } from '../model/filterBy.model'
 import FormInput from './FormInput'
 
 type Props = {
   handleChange: (ev: EvInput) => void
   handleSubmit: (ev: EvForm) => void
+  resetFilter: () => void
   filter: IFilterBy
 }
 
@@ -12,6 +13,7 @@ const ItemFilter: React.FC<Props> = ({
   handleSubmit,
   handleChange,
   filter,
+  resetFilter,
 }) => {
   const { name, maxPrice, minPrice } = filter
 
@@ -76,6 +78,13 @@ const ItemFilter: React.FC<Props> = ({
             />
           </div>
 
+          <button
+            type="button"
+            onClick={resetFilter}
+            className="filter-btn btn"
+          >
+            reset
+          </button>
           <button className="filter-btn btn">filter</button>
         </div>
       </form>

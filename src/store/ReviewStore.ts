@@ -34,9 +34,12 @@ class ReviewStore {
     try {
       this.isLoading = true
       const res = await mutateReview(reviewToUAdd)
+      // console.log('STORE', res)
       runInAction(() => {
-        this.reviews?.push(res)
-        this.isLoading = false
+        if (res) {
+          this.reviews.push(res)
+          this.isLoading = false
+        }
       })
     } catch (err) {
       runInAction(() => {
@@ -57,9 +60,11 @@ class ReviewStore {
       this.isLoading = true
       const res = await mutateReview(reviewToUpdate)
       runInAction(() => {
-        this.isLoading = false
-        const idx = this.reviews?.findIndex((rev) => res.id === rev.id)
-        this.reviews[idx] = res
+        if (res) {
+          this.isLoading = false
+          const idx = this.reviews?.findIndex((rev) => res.id === rev.id)
+          this.reviews[idx] = res
+        }
       })
     } catch (err) {
       runInAction(() => {

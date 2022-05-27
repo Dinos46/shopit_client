@@ -5,6 +5,7 @@ import { useStylesChange } from '../hooks/useStylesChange'
 import { CartItem } from '../components'
 import { observer } from 'mobx-react'
 import Link from 'next/link'
+import HeadInfo from '../components/HeadInfo'
 
 const cart = () => {
   const router = useRouter()
@@ -13,6 +14,7 @@ const cart = () => {
 
   return (
     <section className=" pt-32 text-2xl">
+      <HeadInfo des={'cart page for this fake online store'} title={'Cart'} />
       {userCartStore.cart?.length ? (
         <div>
           <div className="grid grid-cols-3">

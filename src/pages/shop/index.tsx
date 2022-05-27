@@ -6,7 +6,7 @@ import HeadInfo from '../../components/HeadInfo'
 import { queryAllItems } from '../../controlers/item.controler'
 import { useStylesChange } from '../../hooks/useStylesChange'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
-import { EvForm, EvInput } from '../../model/filterBy.model'
+import { clickEv, EvForm, EvInput } from '../../model/filterBy.model'
 import { IItem } from '../../model/item.model'
 import { useAppContext } from '../../store/context/UserContext'
 import { rootStore } from '../../store/RootStore'
@@ -57,6 +57,16 @@ const shop: React.FC<Props> = ({ items }) => {
     [filter]
   )
 
+  const resetFilter = useCallback(async () => {
+    await itemStore.getFilteredItems()
+    setFilter({
+      name: '',
+      minPrice: 0,
+      maxPrice: 0,
+      ctg: '',
+    })
+  }, [])
+
   if (itemStore.isLoading) return <p>Loading...</p>
   if (!itemStore.items) return <p>no items...</p>
 
@@ -66,6 +76,7 @@ const shop: React.FC<Props> = ({ items }) => {
       <ItemFilter
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        resetFilter={resetFilter}
         filter={filter}
       />
       <section className="grid grid-cols-auto-fit gap-6">
@@ -81,13 +92,14 @@ export default observer(shop)
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await queryAllItems()
+  console.log(data)
   const { itemStore } = rootStore
-  if (data?.data?.items) {
-    itemStore.setItems(data?.data?.items?.data)
+  if (data) {
+    itemStore.setItems(data)
   }
   return {
     props: {
-      items: itemStore.items,
+      items: data,
     },
   }
 }

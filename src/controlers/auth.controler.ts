@@ -22,7 +22,7 @@ export const register = async (
       }
 
       const { data } = await httpReq(ADD_USER, variables)
-      return data.data.logIn?.data
+      return data.data.register?.data
     }
   } catch (err) {
     console.log(`error from auth register ${err}`)

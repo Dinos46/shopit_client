@@ -12,6 +12,19 @@ query Items($ctg:String,$minPrice:Int,$maxPrice:Int,$name:String){
         title
         category
         description
+        reviews{
+          id
+          title
+          body
+          createdAt
+          updatedAt
+          rating
+          user{
+            id
+            username
+            image
+          }
+        }
       }
     }
   }
@@ -35,6 +48,7 @@ query getItemsById($id:ID!){
           id
           title
           body
+          rating
           createdAt
           user{
             id

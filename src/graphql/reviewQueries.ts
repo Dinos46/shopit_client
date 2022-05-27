@@ -8,25 +8,38 @@ mutation addReview($title:String!,$body:String!,$rating:Int!,$itemId:String!,$us
         userId:$userId
     })
     {
+      error{
+        message
+      }
+      status
+      data{
+
         id
         title
         body
         createdAt
         updatedAt
         rating
-         user{
-            id
-            email
-            username
-            image
+        user{
+          id
+          email
+          username
+          image
         }
+      }
     }
   }
 `
 
 export const DELETE_REVIEW = `
 mutation deleteReview($reviewId:String!){
-  deleteReview(reviewId:$reviewId)
+  deleteReview(reviewId:$reviewId){
+    error{
+      message
+    }
+    status
+  }
+  
 }
 `
 
@@ -39,18 +52,24 @@ mutation editReview($title:String!,$body:String!,$rating:Int!,$id:ID!){
       id:$id
   })
   {
+    error{
+      message
+    }
+    status
+    data{
       id
       title
       body
       createdAt
       updatedAt
       rating
-       user{
-          id
-          email
-          username
-          image
+      user{
+        id
+        email
+        username
+        image
       }
+    }
   }
 }
 `
