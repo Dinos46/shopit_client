@@ -2,7 +2,7 @@ import axios from 'axios'
 import { IHttpRes } from '../model/httpRes.model'
 import { auth } from './firebaseService'
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
+axios.defaults.baseURL = process.env.BASE_URL
 
 const _getFirebaseToken = async () => {
   const token = await auth.currentUser?.getIdToken()

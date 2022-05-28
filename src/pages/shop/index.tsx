@@ -92,14 +92,13 @@ export default observer(shop)
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await queryAllItems()
-  console.log(data)
   const { itemStore } = rootStore
   if (data) {
     itemStore.setItems(data)
   }
   return {
     props: {
-      items: data,
+      items: data || null,
     },
   }
 }
