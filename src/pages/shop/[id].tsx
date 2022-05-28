@@ -43,6 +43,8 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
     if (reviews) reviewStore.setReviews(reviews)
   }, [])
 
+  if (!item) return <h1>no item</h1>
+
   return (
     <section className=" px-3 pt-32 text-wh">
       <HeadInfo des={'details page for each otem'} title={'item-page'} />
@@ -119,7 +121,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }))
 
   return {
-    paths: paths ?? [],
+    paths: paths ? paths : [],
     fallback: false,
   }
 }
@@ -127,7 +129,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id as string
   const data = await queryItemById(id)
-  console.log(data)
   return {
     props: {
       item: data,
