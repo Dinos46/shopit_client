@@ -16,6 +16,8 @@ type Props = {
 }
 
 const shop: React.FC<Props> = ({ items }) => {
+  if (!items) return <h1>no items</h1>
+
   const { itemStore } = useAppContext()
 
   useStylesChange('')

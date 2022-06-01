@@ -2,7 +2,7 @@ import axios from 'axios'
 import { IHttpRes } from '../model/httpRes.model'
 import { auth } from './firebaseService'
 
-axios.defaults.baseURL = process.env.BASE_URL
+// axios.defaults.baseURL = process.env.BASE_URL
 
 const _getFirebaseToken = async () => {
   const token = await auth.currentUser?.getIdToken()
@@ -19,5 +19,5 @@ export const httpReq = async (query: string, variables: any) => {
     query,
     variables,
   }
-  return await axios.post<IHttpRes>('', queryData)
+  return await axios.post<IHttpRes>('http://localhost:5000/graphql', queryData)
 }

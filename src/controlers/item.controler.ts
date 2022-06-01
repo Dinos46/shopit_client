@@ -1,5 +1,9 @@
 import axios from 'axios'
-import { GET_ALL_ITEMS, GET_ITEM_BY_ID } from '../graphql/itemQueries'
+import {
+  GET_ALL_ITEMS,
+  GET_FILTERD_ITEMS,
+  GET_ITEM_BY_ID,
+} from '../graphql/itemQueries'
 import {
   CREATE_REVIEW,
   DELETE_REVIEW,
@@ -10,14 +14,9 @@ import { IReviewInput } from '../model/review.model'
 import { httpReq } from '../services/httpService'
 
 export const queryAllItems = async (filter?: IFilterBy) => {
-  const filterBy = {
-    ctg: filter?.ctg || '',
-    name: filter?.name || '',
-    maxPrice: filter?.maxPrice || undefined,
-    minPrice: filter?.minPrice || undefined,
-  }
+  const query = filter ? GET_FILTERD_ITEMS : GET_ALL_ITEMS
   try {
-    const { data } = await httpReq(GET_ALL_ITEMS, filterBy)
+    const { data } = await httpReq(query, filter)
     if (data) {
       return data.data.items?.data
     }
@@ -36,7 +35,6 @@ export const queryItemById = async (id: string) => {
     // })
     const { data } = await httpReq(GET_ITEM_BY_ID, { id })
     if (data) {
-      console.log('ITEM', data.data.item?.data)
       return data.data.item?.data
     }
   } catch (err) {
@@ -53,7 +51,6 @@ export const mutateReview = async (reviewToAdd: IReviewInput) => {
     //   variables: reviewToAdd,
     // })
     const { data } = await httpReq(query, reviewToAdd)
-    console.log('REVIEW', data.data.addReview?.data)
     return reviewToAdd.id
       ? data.data.editReview?.data
       : data.data.addReview?.data

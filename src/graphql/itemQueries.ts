@@ -1,6 +1,7 @@
 export const GET_ALL_ITEMS = `
-query Items($ctg:String,$minPrice:Int,$maxPrice:Int,$name:String){
-    items(filter:{ctg:$ctg,minPrice:$minPrice,maxPrice:$maxPrice,name:$name}){
+
+query {
+    items{
       error{
         message
       }
@@ -59,4 +60,37 @@ query getItemsById($id:ID!){
       }
     }
   }
+`
+
+export const GET_FILTERD_ITEMS = `
+query($ctg:String,$name:String,$maxPrice:Int,$minPrice:Int) {
+  items( filter:{ctg:$ctg,minPrice:$minPrice,maxPrice:$maxPrice,name:$name} ){
+    error{
+      message
+    }
+    status
+    data{
+      id
+      image
+      price
+      title
+      category
+      description
+      reviews{
+        id
+        title
+        body
+        createdAt
+        updatedAt
+        rating
+        user{
+          id
+          username
+          image
+        }
+      }
+    }
+  }
+}
+
 `

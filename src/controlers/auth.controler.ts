@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -20,7 +21,11 @@ export const register = async (
         username,
         image: '',
       }
-
+      // const queryData = {
+      //   query: ADD_USER,
+      //   variables: { email },
+      // }
+      // const res = await axios.post('', queryData)
       const { data } = await httpReq(ADD_USER, variables)
       return data.data.register?.data
     }
@@ -55,6 +60,6 @@ export const getLogedInUser = async (email: string) => {
     const { data } = await httpReq(LOGEDIN_USER, { email })
     return data.data.getLogedInUser?.data
   } catch (err) {
-    console.log(`error from auth logOut ${err}`)
+    console.log(`error from auth get user data ${err}`)
   }
 }

@@ -1,26 +1,29 @@
 export const ADD_USER = `
-  mutation($email:String!,$username:String!,$image:String!){
-    register(userInput:{email:$email,username:$username,image:$image}){
-      error{
-        message
-      }
-      status
-      data{
+mutation($email:String!,$username:String!,$image:String!){
+  register(userInput:{email:$email,username:$username,image:$image}){
+    error{
+      message
+    }
+    status
+    data{
+      id
+      email
+      username
+      image
+      role
+      cart{
         id
-        email
-        username
-        image
-        role
-        cart{
+        quantity
+        item{
           id
-          quantity
-          itemId
+          image
+          price
+          title
         }
-        createdAt
-        updatedAt
       }
     }
   }
+}
 `
 
 export const GET_USER = `
@@ -39,7 +42,12 @@ query($email:String!){
       cart{
         id
         quantity
-        itemId
+        item{
+          id
+          image
+          price
+          title
+        }
       }
     }
   }
@@ -47,26 +55,29 @@ query($email:String!){
 `
 
 export const LOGEDIN_USER = `
-  query($email:String!){
-    getLogedInUser(email:$email){
-      error{
-        message
-      }
-      status
-      data{
+query($email:String!){
+  getLogedInUser(email:$email){
+    error{
+      message
+    }
+    status
+    data{
+      id
+      email
+      username
+      image
+      role
+      cart{
         id
-        email
-        username
-        image
-        role
-        cart{
+        quantity
+        item{
           id
-          quantity
-          itemId
+          image
+          price
+          title
         }
-        createdAt
-        updatedAt
       }
     }
   }
+}
 `
