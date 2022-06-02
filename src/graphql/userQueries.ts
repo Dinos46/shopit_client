@@ -77,6 +77,8 @@ query($email:String!){
           title
         }
       }
+      createdAt
+      updatedAt
     }
   }
 }
