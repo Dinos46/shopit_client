@@ -1,7 +1,7 @@
 import { LogisterForm } from '../components'
 import HeadInfo from '../components/HeadInfo'
 
-const login = () => {
+const Login = () => {
   return (
     <>
       <HeadInfo des={'login page for users'} title={'LogIn'} />
@@ -10,4 +10,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login

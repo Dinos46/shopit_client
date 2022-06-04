@@ -1,7 +1,7 @@
 import { LogisterForm } from '../components'
 import HeadInfo from '../components/HeadInfo'
 
-const register = () => {
+const Register = () => {
   return (
     <>
       <HeadInfo des={'register page for users'} title={'Register'} />
@@ -10,4 +10,4 @@ const register = () => {
   )
 }
 
-export default register
+export default Register

@@ -6,7 +6,7 @@ import HeadInfo from '../../components/HeadInfo'
 import { queryAllItems } from '../../controlers/item.controler'
 import { useStylesChange } from '../../hooks/useStylesChange'
 import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
-import { clickEv, EvForm, EvInput } from '../../model/filterBy.model'
+import { EvForm, EvInput } from '../../model/filterBy.model'
 import { IItem } from '../../model/item.model'
 import { useAppContext } from '../../store/context/UserContext'
 import { rootStore } from '../../store/RootStore'
@@ -15,9 +15,7 @@ type Props = {
   items: IItem[]
 }
 
-const shop: React.FC<Props> = ({ items }) => {
-  if (!items) return <h1>no items</h1>
-
+const Shop: React.FC<Props> = ({ items }) => {
   const { itemStore } = useAppContext()
 
   useStylesChange('')
@@ -25,7 +23,7 @@ const shop: React.FC<Props> = ({ items }) => {
 
   useEffect(() => {
     itemStore.setItems(items)
-  }, [items])
+  }, [items, itemStore])
 
   const [filter, setFilter] = useState({
     name: '',
@@ -34,30 +32,24 @@ const shop: React.FC<Props> = ({ items }) => {
     ctg: '',
   })
 
-  const handleChange = useCallback(
-    (ev: EvInput) => {
-      const { name } = ev.currentTarget
-      const { value } = ev.currentTarget
-      setFilter((prevFilter) => ({
-        ...prevFilter,
-        [name]: value,
-      }))
-    },
-    [filter]
-  )
+  const handleChange = useCallback((ev: EvInput) => {
+    const { name } = ev.currentTarget
+    const { value } = ev.currentTarget
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      [name]: value,
+    }))
+  }, [])
 
-  const handleSubmit = useCallback(
-    async (ev: EvForm) => {
-      ev.preventDefault()
-      const filterBy = {
-        ...filter,
-        minPrice: +filter.minPrice,
-        maxPrice: +filter.maxPrice,
-      }
-      await itemStore.getFilteredItems(filterBy)
-    },
-    [filter]
-  )
+  const handleSubmit = useCallback(async (ev: EvForm) => {
+    ev.preventDefault()
+    const filterBy = {
+      ...filter,
+      minPrice: +filter.minPrice,
+      maxPrice: +filter.maxPrice,
+    }
+    await itemStore.getFilteredItems(filterBy)
+  }, [])
 
   const resetFilter = useCallback(async () => {
     await itemStore.getFilteredItems()
@@ -69,6 +61,7 @@ const shop: React.FC<Props> = ({ items }) => {
     })
   }, [])
 
+  if (!items) return <h1>no items</h1>
   if (itemStore.isLoading) return <p>Loading...</p>
   if (!itemStore.items) return <p>no items...</p>
 
@@ -90,7 +83,7 @@ const shop: React.FC<Props> = ({ items }) => {
   )
 }
 
-export default observer(shop)
+export default observer(Shop)
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await queryAllItems()

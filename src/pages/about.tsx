@@ -1,8 +1,8 @@
 import HeadInfo from '../components/HeadInfo'
 import { useStylesChange } from '../hooks/useStylesChange'
-import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
+// import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
 
-const about = () => {
+const About = () => {
   useStylesChange('')
   // useUserAuthStateChange()
 
@@ -13,4 +13,4 @@ const about = () => {
   )
 }
 
-export default about
+export default About

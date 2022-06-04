@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import HeadInfo from '../components/HeadInfo'
 import { useAppContext } from '../store/context/UserContext'
 
-const dashboard = () => {
+const Dashboard = () => {
   const { authStore } = useAppContext()
   const router = useRouter()
 
@@ -11,7 +11,7 @@ const dashboard = () => {
     if (!authStore.user) {
       router.replace('/')
     }
-  }, [])
+  }, [authStore.user])
 
   return (
     <div>
@@ -24,4 +24,4 @@ const dashboard = () => {
   )
 }
 
-export default dashboard
+export default Dashboard

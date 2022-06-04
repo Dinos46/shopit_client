@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import { EvForm } from '../model/filterBy.model'
 import StarsRating from './StarsRating'
 import CloseIcon from '@mui/icons-material/Close'
@@ -7,7 +13,7 @@ import { useRouter } from 'next/router'
 import { IReview } from '../model/review.model'
 
 type Props = {
-  setIsOpen: (isOpen: boolean) => void
+  setIsOpen: Dispatch<SetStateAction<boolean>>
   review?: IReview
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { clickEv, EvForm, EvInput, IFilterBy } from '../model/filterBy.model'
+import { EvForm, EvInput, IFilterBy } from '../model/filterBy.model'
 import FormInput from './FormInput'
 
 type Props = {

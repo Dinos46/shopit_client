@@ -7,14 +7,13 @@ import { useAppContext } from '../store/context/UserContext'
 import { useCallback, useMemo, useState } from 'react'
 import { observer } from 'mobx-react'
 import ReviewForm from './ReviewForm'
-import { toJS } from 'mobx'
+import Image from 'next/image'
 
 type Props = {
   review: IReview
 }
 
 const ItemReview: React.FC<Props> = ({ review }) => {
-  // console.log(toJS(review))
   const { user } = review
   const { authStore, reviewStore } = useAppContext()
   const [isOpen, setIsOpen] = useState(false)
@@ -37,7 +36,7 @@ const ItemReview: React.FC<Props> = ({ review }) => {
       <div className="flex">
         <div className="mr-2 flex flex-col items-center justify-center rounded-full ">
           {user.image ? (
-            <img src={user.image} alt="user image" />
+            <Image src={user.image} alt="user image" />
           ) : (
             <AccountCircleIcon className=" h-[5rem] w-[5rem] rounded-full " />
           )}
@@ -45,7 +44,7 @@ const ItemReview: React.FC<Props> = ({ review }) => {
         </div>
         <div className="flex flex-col items-start justify-center self-end font-pop">
           <h4 className="bg-opacity-95 text-2xl">{review.title}</h4>
-          <p className="my-1 opacity-60">"{review.body}"</p>
+          <p className="my-1 opacity-60">{`"${review.body}"`}</p>
           <StarsRating
             name={'read-only'}
             isReadOnly={true}

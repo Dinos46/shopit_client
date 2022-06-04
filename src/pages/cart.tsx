@@ -1,14 +1,11 @@
 import { useAppContext } from '../store/context/UserContext'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import { useStylesChange } from '../hooks/useStylesChange'
 import { CartItem } from '../components'
 import { observer } from 'mobx-react'
 import Link from 'next/link'
 import HeadInfo from '../components/HeadInfo'
 
-const cart = () => {
-  const router = useRouter()
+const Cart = () => {
   const { userCartStore, authStore } = useAppContext()
   useStylesChange('')
 
@@ -40,4 +37,4 @@ const cart = () => {
   )
 }
 
-export default observer(cart)
+export default observer(Cart)
