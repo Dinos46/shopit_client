@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 import { IReview } from '../model/review.model'
 
 type Props = {
-  setIsOpen: Dispatch<SetStateAction<boolean>>
+  setIsOpen: (isOpen: boolean) => void
   review?: IReview
 }
 

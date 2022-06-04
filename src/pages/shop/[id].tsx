@@ -26,12 +26,9 @@ const ItemDetails: React.FC<Props> = ({ item }) => {
   useUserAuthStateChange()
   // if (reviews) reviewStore.setReviews(reviews)
 
-  const setIsOpen = useCallback(
-    (isOpen: boolean) => {
-      setOpen(isOpen)
-    },
-    [open]
-  )
+  const setIsOpen = useCallback((isOpen: boolean) => {
+    setOpen(isOpen)
+  }, [])
 
   const handleCartChange = useCallback((name: string) => {
     name === 'add'
