@@ -28,8 +28,6 @@ class UserCartStore {
   addToCart(itemToAdd: IItem) {
     const idx = this.cart.findIndex(({ item }) => item.id === itemToAdd.id)
     if (!this.cart.length || idx === -1) {
-      console.log('first')
-      console.log('found', idx)
       this.cart.push({ qty: 1, item: itemToAdd })
       return
     }

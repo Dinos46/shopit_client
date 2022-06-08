@@ -1,55 +1,46 @@
 export const CREATE_REVIEW = `
-mutation addReview($title:String!,$body:String!,$rating:Int!,$itemId:String!,$userId:String!){
-    addReview(reviewInput:{
-        title:$title,
-        body:$body,
-        rating:$rating,
-        itemId:$itemId,
-        userId:$userId
-    })
-    {
-      error{
-        message
-      }
-      status
-      data{
-
-        id
-        title
-        body
-        createdAt
-        updatedAt
-        rating
-        user{
-          id
-          email
-          username
-          image
-        }
+mutation($userId:String!,$title:String!,$body:String!,$rating:Int!,$itemId:String!){
+  addReview(reviewInput:{title:$title,body:$body,rating:$rating,itemId:$itemId,userId:$userId}){
+    error{
+      message
+    }
+    status
+    data{
+      id
+      title
+      body
+      createdAt
+      updatedAt
+      rating
+      user{
+        email
+        username
+        image
       }
     }
   }
+}
 `
 
 export const DELETE_REVIEW = `
-mutation deleteReview($reviewId:String!){
+mutation($reviewId:String!){
   deleteReview(reviewId:$reviewId){
     error{
       message
     }
     status
   }
-  
 }
 `
 
 export const UPDATE_REVIEW = `
-mutation editReview($title:String!,$body:String!,$rating:Int!,$id:ID!){
+mutation($title:String!,$body:String!,$rating:Int!,$id:ID!,$userId:String!){
   editReview(reviewInput:{
       title:$title,
       body:$body,
       rating:$rating,
       id:$id
+      userId:$userId
   })
   {
     error{

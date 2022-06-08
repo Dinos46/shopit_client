@@ -41,7 +41,7 @@ const ReviewForm: React.FC<Props> = ({ setIsOpen, review }) => {
         : await reviewStore.createReview(reviewToAdd)
       resetForm()
     },
-    [rate]
+    [rate, titleInput, bodyInput]
   )
 
   useEffect(() => {

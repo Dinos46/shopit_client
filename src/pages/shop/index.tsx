@@ -41,15 +41,18 @@ const Shop: React.FC<Props> = ({ items }) => {
     }))
   }, [])
 
-  const handleSubmit = useCallback(async (ev: EvForm) => {
-    ev.preventDefault()
-    const filterBy = {
-      ...filter,
-      minPrice: +filter.minPrice,
-      maxPrice: +filter.maxPrice,
-    }
-    await itemStore.getFilteredItems(filterBy)
-  }, [])
+  const handleSubmit = useCallback(
+    async (ev: EvForm) => {
+      ev.preventDefault()
+      const filterBy = {
+        ...filter,
+        minPrice: +filter.minPrice,
+        maxPrice: +filter.maxPrice,
+      }
+      await itemStore.getFilteredItems(filterBy)
+    },
+    [filter]
+  )
 
   const resetFilter = useCallback(async () => {
     await itemStore.getFilteredItems()

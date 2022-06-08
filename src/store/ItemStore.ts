@@ -20,7 +20,6 @@ class ItemStore {
     this.isLoading = true
     try {
       const items = await queryAllItems(filter)
-      console.log(items)
       runInAction(() => {
         if (items) {
           this.setItems(items)

@@ -56,7 +56,6 @@ export const logOut = async () => {
 }
 
 export const getLogedInUser = async (email: string) => {
-  console.log(email)
   try {
     const { data } = await httpReq(LOGEDIN_USER, { email })
     return data.data.getLogedInUser?.data

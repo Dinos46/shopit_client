@@ -3,7 +3,7 @@ import { IHttpRes } from '../model/httpRes.model'
 import { auth } from './firebaseService'
 
 const axios = Axios.create({
-  baseURL: 'https://shopit-store.herokuapp.com',
+  baseURL: 'http://localhost:5000',
 })
 const _getFirebaseToken = async () => {
   const token = await auth.currentUser?.getIdToken()
@@ -15,7 +15,6 @@ const _getFirebaseToken = async () => {
 }
 
 export const httpReq = async (query: string, variables: any) => {
-  console.log('VAR', variables)
   await _getFirebaseToken()
   const queryData = {
     query,

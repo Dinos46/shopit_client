@@ -1,7 +1,7 @@
 export const GET_ALL_ITEMS = `
 
-query {
-    items{
+query($ctg:String,$minPrice:Int,$maxPrice:Int,$name:String){
+    items(filter:{$ctg:ctg,$minPrice:minPrice,$maxPrice:maxPrice,$name:name}){
       error{
         message
       }

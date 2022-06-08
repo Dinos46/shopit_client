@@ -34,7 +34,6 @@ class ReviewStore {
     try {
       this.isLoading = true
       const res = await mutateReview(reviewToUAdd)
-      // console.log('STORE', res)
       runInAction(() => {
         if (res) {
           this.reviews.push(res)
@@ -55,6 +54,7 @@ class ReviewStore {
       title: input.title,
       rating: input.rating,
       id: input.id,
+      userId: input.userId,
     }
     try {
       this.isLoading = true
