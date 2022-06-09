@@ -77,7 +77,7 @@ const Shop: React.FC<Props> = ({ items }) => {
         resetFilter={resetFilter}
         filter={filter}
       />
-      <section className="grid grid-cols-auto-fit gap-6">
+      <section className="grid grid-cols-auto-fit gap-5">
         {itemStore?.items?.map((item) => (
           <ItemCard key={item.id} item={item} />
         ))}

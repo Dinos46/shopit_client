@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { ICartItem } from '../model/user.model'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
@@ -23,8 +23,6 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
       ? userCartStore.addToCart(item)
       : userCartStore.removeFromCart(item.id!)
   }, [])
-
-  useEffect(() => {}, [userCartStore.cart])
 
   return (
     <article className="col-span-full grid grid-cols-cart-grid items-center justify-between gap-2 border-b-4 border-slate-200 bg-wh p-2 font-pop">
