@@ -1,11 +1,14 @@
+//REAXT-NEXT
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useCallback } from 'react'
-import { IItem } from '../model/item.model'
-import { useAppContext } from '../store/context/UserContext'
-import ShortTitle from './ShortTitle'
+//MATERIAL-UI
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
+//APP STATE
+import { useAppContext } from '../../store/context/UserContext'
+//COMPONENTS HOOKS TYPES
+import { IItem } from '../../model/item.model'
+import ShortTitle from '../Global/ShortTitle'
 
 type Props = {
   item: IItem

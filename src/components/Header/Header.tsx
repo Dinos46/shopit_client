@@ -1,23 +1,23 @@
+//REAXT-NEXT
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useCallback, useState } from 'react'
+//MATERIAL-UI
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { useCallback, useEffect, useState } from 'react'
-import { useAppContext } from '../../store/context/UserContext'
-import UserMenu from './UserMenu'
 import Badge from '@mui/material/Badge'
+//APP STATE
+import { useAppContext } from '../../store/context/UserContext'
 import { observer } from 'mobx-react'
+//COMPONENTS HOOKS TYPES
+import UserMenu from './UserMenu'
 
 const Header = () => {
   const { authStore, userCartStore } = useAppContext()
   const router = useRouter()
   const [open, setOpen] = useState(false)
-
-  // useEffect(() => {
-  //   userCartStore.setCart(authStore.user.cart)
-  // }, [])
 
   const handleClickAway = useCallback(() => {
     setOpen(false)

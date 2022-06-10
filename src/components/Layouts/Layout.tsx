@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-import Footer from './Footer'
-import Header from './Header/Header'
+import Footer from '../Footer/Footer'
+import Header from '../Header/Header'
 import ScrollTop from './ScrollTop'
 
 const Layout: React.FC<ReactNode> = ({ children }) => {

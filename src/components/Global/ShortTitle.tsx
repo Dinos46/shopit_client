@@ -1,3 +1,4 @@
+//REAXT-NEXT
 import React, { useState } from 'react'
 
 type Props = {
@@ -9,14 +10,14 @@ const ShortTitle: React.FC<Props> = ({ title }) => {
 
   return (
     <div className="self-end border-t-2 border-gray-200">
-      <h4 className="  font-pop  text-bl">
+      <h4 className="font-pop text-bl">
         {title.slice(0, 19)}
         {isShown && title.slice(19, title.length)}
       </h4>
 
       {!isShown && (
         <span
-          className="cursor-pointer font-pop "
+          className="cursor-pointer font-pop text-bl"
           onClick={() => setIsShown(!isShown)}
         >
           show more...
@@ -24,7 +25,7 @@ const ShortTitle: React.FC<Props> = ({ title }) => {
       )}
       {isShown && (
         <span
-          className="cursor-pointer font-pop "
+          className="cursor-pointer font-pop text-bl"
           onClick={() => setIsShown(!isShown)}
         >
           show less...

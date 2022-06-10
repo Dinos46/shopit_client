@@ -1,5 +1,5 @@
-import { Hero, ItemCategory } from '../components'
-import HeadInfo from '../components/HeadInfo'
+//COMPONENTS HOOKS TYPES
+import { HeadInfo, Hero, ItemCategory } from '../components'
 import { useStylesChange } from '../hooks/useStylesChange'
 import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
 

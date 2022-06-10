@@ -1,6 +1,8 @@
+//REAXT-NEXT
 import { useState } from 'react'
-import { EvForm, EvInput, IFilterBy } from '../model/filterBy.model'
-import FormInput from './FormInput'
+//COMPONENTS HOOKS TYPES
+import { EvForm, EvInput, IFilterBy } from '../../model/filterBy.model'
+import FormInput from '../Global/FormInput'
 
 type Props = {
   handleChange: (ev: EvInput) => void
@@ -77,11 +79,10 @@ const ItemFilter: React.FC<Props> = ({
               style="filter-input mr-2 w-1/6"
             />
           </div>
-
           <button
             type="button"
             onClick={resetFilter}
-            className="filter-btn btn"
+            className="filter-btn btn mr-3"
           >
             reset
           </button>

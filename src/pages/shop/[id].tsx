@@ -1,17 +1,20 @@
-import { IItem } from '../../model/item.model'
-import { queryAllItems, queryItemById } from '../../controlers/item.controler'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { useStylesChange } from '../../hooks/useStylesChange'
+//REAXT-NEXT
 import Image from 'next/image'
-import { ItemReview } from '../../components'
-import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
-import HeadInfo from '../../components/HeadInfo'
-import ReviewForm from '../../components/ReviewForm'
+import { useRouter } from 'next/router'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { useCallback, useEffect, useState } from 'react'
+//MATERIAL-UI
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+//API-CONTROLLER
+import { queryAllItems, queryItemById } from '../../controlers/item.controler'
+//APP STATE
 import { useAppContext } from '../../store/context/UserContext'
 import { observer } from 'mobx-react'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { useRouter } from 'next/router'
+//COMPONENTS HOOKS TYPES
+import { IItem } from '../../model/item.model'
+import { useStylesChange } from '../../hooks/useStylesChange'
+import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
+import { HeadInfo, ItemReview, ReviewForm } from '../../components'
 
 type Props = {
   item: IItem

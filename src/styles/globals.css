@@ -31,7 +31,7 @@ body {
 
 /* navigation top bar */
 .nav {
-  @apply mx-auto flex w-full  max-w-6xl items-center  justify-between p-5 font-pop;
+  @apply mx-auto flex w-full  max-w-6xl items-center  justify-between py-5 font-pop;
 }
 
 .activ {
@@ -55,7 +55,7 @@ body.header-bg header {
 }
 /********************* footer ******************/
 .footer {
-  @apply mt-5 flex flex-col items-center justify-center bg-bl p-1 font-pop;
+  @apply flex flex-col items-center justify-center bg-bl p-1 font-pop;
 }
 /******************* hero section **************/
 .ctg-card {
@@ -72,7 +72,7 @@ body.header-bg header {
 }
 
 .filter-btn {
-  @apply h-[35px] w-[20%] bg-gray-200 p-[0.2rem] p-[0.2rem] hover:border-2 hover:border-pink-200 hover:bg-bl hover:text-wh;
+  @apply h-[35px] w-[13%] bg-gray-200 p-[0.2rem] p-[0.2rem] hover:border-2 hover:border-pink-200 hover:bg-bl hover:text-wh;
 }
 
 /*********************** reviws form ****************/
@@ -97,4 +97,13 @@ body.header-bg header {
 .review:hover .review-actions {
   opacity: 1;
   pointer-events: auto;
+}
+
+/***************************** dashboard **************************/
+.dashboard-aside-link {
+  @apply w-full cursor-pointer border-b-2 border-bl p-2 text-center hover:border-blue-200;
+}
+
+.aside {
+  @apply flex h-[91vh] justify-center bg-bl bg-opacity-60 font-pop text-base capitalize text-wh;
 }

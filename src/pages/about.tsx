@@ -1,10 +1,11 @@
-import HeadInfo from '../components/HeadInfo'
+//COMPONENTS HOOKS TYPES
+import { HeadInfo } from '../components'
 import { useStylesChange } from '../hooks/useStylesChange'
-// import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
+import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
 
 const About = () => {
   useStylesChange('')
-  // useUserAuthStateChange()
+  useUserAuthStateChange()
 
   return (
     <div>

@@ -1,18 +1,23 @@
+//REAXT-NEXT
 import Image from 'next/image'
-import { FormEvent, useCallback, useState } from 'react'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { useAppContext } from '../store/context/UserContext'
-import { observer } from 'mobx-react'
+import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useStylesChange } from '../hooks/useStylesChange'
-import { useUserAuthStateChange } from '../hooks/useUserAuthStateChange'
-import { EvInput, EvForm } from '../model/filterBy.model'
+//MATERIAL-UI
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+//APP STATE
+import { useAppContext } from '../../store/context/UserContext'
+import { observer } from 'mobx-react'
+//COMPONENTS HOOKS TYPES
+import { useUserAuthStateChange } from '../../hooks/useUserAuthStateChange'
+import { useStylesChange } from '../../hooks/useStylesChange'
+import { EvForm, EvInput } from '../../model/filterBy.model'
+
 type Props = {
   state: string
 }
 
 const LogisterForm: React.FC<Props> = ({ state }) => {
-  const { pathname } = useRouter()
+  const { pathname, push } = useRouter()
 
   const { authStore } = useAppContext()
   const [creds, setCreds] = useState({
@@ -41,9 +46,13 @@ const LogisterForm: React.FC<Props> = ({ state }) => {
     async (ev: EvForm) => {
       ev.preventDefault()
       if (!email && !password) return
-      pathname === '/register'
-        ? authStore.createUser(email, password, username)
-        : authStore.logInUser(email, password)
+      if (pathname === '/register') {
+        authStore.createUser(email, password, username)
+        push('/')
+      }
+
+      authStore.logInUser(email, password)
+      push('/')
     },
     [creds]
   )

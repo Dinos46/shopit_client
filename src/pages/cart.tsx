@@ -1,16 +1,18 @@
-import { useAppContext } from '../store/context/UserContext'
-import { useStylesChange } from '../hooks/useStylesChange'
-import { CartItem } from '../components'
-import { observer } from 'mobx-react'
+//REAXT-NEXT
 import Link from 'next/link'
-import HeadInfo from '../components/HeadInfo'
+//APP STATE
+import { useAppContext } from '../store/context/UserContext'
+import { observer } from 'mobx-react'
+//COMPONENTS HOOKS TYPES
+import { useStylesChange } from '../hooks/useStylesChange'
+import { CartItem, HeadInfo } from '../components'
 
 const Cart = () => {
   const { userCartStore, authStore } = useAppContext()
   useStylesChange('')
 
   return (
-    <section className=" pt-32 text-2xl">
+    <section className=" pt-32 text-xl font-medium">
       <HeadInfo des={'cart page for this fake online store'} title={'Cart'} />
       {userCartStore.cart?.length ? (
         <div>
@@ -19,10 +21,12 @@ const Cart = () => {
               <CartItem cartItem={item} key={item.item.id! + idx} />
             ))}
           </div>
-          <div className="flex justify-between rounded-b-md border-t-4 border-bl bg-wh p-2">
+          <div className="flex justify-between rounded-b-md border-t-4 border-bl bg-wh p-3">
             <p>total: {userCartStore.cartValue.toFixed(2)}$</p>
             {authStore.user ? (
-              <button>proceed to checkout</button>
+              <button className="text-xl font-medium">
+                proceed to checkout
+              </button>
             ) : (
               <Link href={'/login'}>login to complete purchase</Link>
             )}

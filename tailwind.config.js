@@ -16,6 +16,7 @@ module.exports = {
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(270px, 1fr))',
         'cart-grid': '1fr 3fr 1fr 1fr',
+        'dashboard-grid': '200px 1fr',
       },
     },
   },

@@ -13,16 +13,18 @@ class UserCartStore {
       removeFromCart: action,
       addToCart: action,
       setCart: action,
-      getItemTotalPrice: action,
+      getTotalItemValue: action,
     })
   }
 
-  get cartCount() {
-    return this.cart.length
+  get cartValue() {
+    return this.cart.reduce((acc, { item, qty }) => {
+      return (acc += item.price * qty)
+    }, 0)
   }
 
-  getItemTotalPrice({ item, qty }: ICartItem) {
-    return item.price * qty
+  get cartCount() {
+    return this.cart.reduce((acc, { qty }) => (acc += qty), 0)
   }
 
   addToCart(itemToAdd: IItem) {
@@ -45,10 +47,8 @@ class UserCartStore {
     this.cart.splice(idx, 1)
   }
 
-  get cartValue() {
-    return this.cart.reduce((acc, { item, qty }) => {
-      return (acc += item.price * qty)
-    }, 0)
+  getTotalItemValue(item: ICartItem) {
+    return item.qty * item.item.price
   }
 
   setCart(cart: ICartItem[]) {

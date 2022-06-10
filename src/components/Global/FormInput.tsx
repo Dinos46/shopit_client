@@ -1,5 +1,7 @@
+//REAXT-NEXT
 import React from 'react'
-import { EvInput } from '../model/filterBy.model'
+//COMPONENTS HOOKS TYPES
+import { EvInput } from '../../model/filterBy.model'
 
 type Props = {
   type: string

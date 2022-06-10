@@ -1,13 +1,17 @@
-import { IReview } from '../model/review.model'
+//REAXT-NEXT
+import { useCallback, useMemo, useState } from 'react'
+import Image from 'next/image'
+//MATERIAL-UI
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import StarsRating from './StarsRating'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { useAppContext } from '../store/context/UserContext'
-import { useCallback, useMemo, useState } from 'react'
+//APP STATE
+import { useAppContext } from '../../store/context/UserContext'
 import { observer } from 'mobx-react'
-import ReviewForm from './ReviewForm'
-import Image from 'next/image'
+//COMPONENTS HOOKS TYPES
+import { IReview } from '../../model/review.model'
+import StarsRating from '../Global/StarsRating'
+import ReviewForm from '../Form/ReviewForm'
 
 type Props = {
   review: IReview

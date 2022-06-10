@@ -1,16 +1,14 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
-import { EvForm } from '../model/filterBy.model'
-import StarsRating from './StarsRating'
-import CloseIcon from '@mui/icons-material/Close'
-import { useAppContext } from '../store/context/UserContext'
+//REAXT-NEXT
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { IReview } from '../model/review.model'
+//MATERIAL-UI
+import CloseIcon from '@mui/icons-material/Close'
+//APP STATE
+import { useAppContext } from '../../store/context/UserContext'
+//COMPONENTS HOOKS TYPES
+import { IReview } from '../../model/review.model'
+import { EvForm } from '../../model/filterBy.model'
+import StarsRating from '../Global/StarsRating'
 
 type Props = {
   setIsOpen: (isOpen: boolean) => void

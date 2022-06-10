@@ -1,5 +1,5 @@
-import { LogisterForm } from '../components'
-import HeadInfo from '../components/HeadInfo'
+//COMPONENTS HOOKS TYPES
+import { HeadInfo, LogisterForm } from '../components'
 
 const Register = () => {
   return (
